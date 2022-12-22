@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using WasmTetris.Game.BaseGameObject;
 using WasmTetris.Game.Engine;
 using WasmTetris.Game.GameObjects;
 
@@ -13,8 +14,18 @@ public partial class Game
     protected override void OnInitialized()
     {
         renderEngine.AddImageAsset("images/ChestBlue.png");
+        renderEngine.AddImageAsset("images/tile.png");
 
         renderEngine.AddGameObject(new GameManager());
+
+        //renderEngine.AddGameObject(new RectWithBorderGameObject
+        //{
+        //    Color = "#ff0000",
+        //    Width = 32,
+        //    Height = 32,
+        //    PositionX = 100,
+        //    PositionY = 100
+        //});
     }
 
     protected override void OnAfterRender(bool firstRender)

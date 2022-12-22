@@ -13,7 +13,7 @@ public class RenderEngine : IRenderEngine
 
     private List<GameObject> _activeGameObjects = new();
 
-    private List<ImageData> _nextRenderImageStack = new();
+    private List<object> _nextRenderStack = new();
 
     public RenderEngine(IJSRuntime jsRuntime)
     {
@@ -37,14 +37,39 @@ public class RenderEngine : IRenderEngine
 
     public void RemoveGameObject(GameObject gameObject)
     {
+        gameObject.IsDestroyed = true;
         _activeGameObjects.Remove(gameObject);
     }
 
-    public void DrawImageAsync(string imageUrl, float posX, float posY)
+    public void DrawImageAsync(string imageUrl, int posX, int posY)
     {
-        _nextRenderImageStack.Add(new(imageUrl, (int)posX, (int)posY));
+        _nextRenderStack.Add(new RenderObject<RenderImageObject>
+        {
+            Type = "Image",
+            PositionX = posX,
+            PositionY = posY,
+            Data = new RenderImageObject
+            {
+                ImageUrl = imageUrl
+            }
+        });
     }
 
+    public void DrawRectWithBorder(string htmlColor, int posX, int posY, int width, int height)
+    {
+        _nextRenderStack.Add(new RenderObject<RenderRectWithBorderObject>
+        {
+            Type = "RectWithBorder",
+            PositionX = posX,
+            PositionY = posY,
+            Width = width,
+            Height = height,
+            Data = new RenderRectWithBorderObject
+            {
+                Color = htmlColor
+            }
+        });
+    }
 
     [JSInvokable]
     public async void UpdateGameObjects(float deltaTime)
@@ -62,7 +87,8 @@ public class RenderEngine : IRenderEngine
             gameObject.Render(this);
         }
 
-        await _jsReference!.InvokeVoidAsync("drawImages", (object)_nextRenderImageStack);
-        _nextRenderImageStack.Clear();
+
+        await _jsReference!.InvokeVoidAsync("drawObjects", _nextRenderStack);
+        _nextRenderStack.Clear();
     }
 }

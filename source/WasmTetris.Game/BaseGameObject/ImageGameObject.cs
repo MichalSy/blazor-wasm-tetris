@@ -9,6 +9,6 @@ public class ImageGameObject : GameObject
 
     public override void Render(IRenderEngine renderEngine)
     {
-        renderEngine.DrawImageAsync(ImageUrl, PositionY, PositionX);
+        renderEngine.DrawImageAsync(ImageUrl, (int)PositionY, (int)PositionX);
     }
 }
