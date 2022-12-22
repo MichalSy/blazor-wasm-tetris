@@ -24,15 +24,15 @@
       "System.Collections.Concurrent.dll": "sha256-urBscnV0Rfsvmm2FffpPx7jgo8GO+4Yt0gQtYiLPqCo=",
       "System.Collections.dll": "sha256-9U2\/7g84jM3jNRdUISZdDKCLxzTh9xb37aI9izW6Whw=",
       "System.ComponentModel.dll": "sha256-LQCRN10G7vx1ozdhuBeT72jLHw4bNOuR9B5zS7yx1mI=",
-      "System.Linq.dll": "sha256-FLjSBYM1zforhb6Hj2HmV37X0QwY9e6nzH1KEnJdQsw=",
+      "System.Linq.dll": "sha256-MvlcVptYEM4pbMCWj8W6iSirnKmp4NtltkbbHS2nCKA=",
       "System.Memory.dll": "sha256-LhiI20vyUzSAGjy2\/hiMrS1kcBvV8BG2dFRk+3V68tw=",
       "System.Private.CoreLib.dll": "sha256-N2XCSQYbDHDGmE9N+7IQ8BeCeVr8v+HpQgesyhYZP+s=",
       "System.Private.Uri.dll": "sha256-6lR0k3G4pQCC85Yjj\/oCfxgVo4gti8oKRPttOw+YdR4=",
-      "System.Runtime.dll": "sha256-Lq\/G3bJ3NOIZFd47ZHJFaxL\/bWCFAZlMj0rC7zcUhdA=",
+      "System.Runtime.dll": "sha256-tNSHvQMBpO1BwANVrRXOdgabgIoVSyW8czdhMMovZ2o=",
       "System.Runtime.InteropServices.JavaScript.dll": "sha256-yzwrz7wGkCbCGzHjhDdsfqjlUQpaQ54vPWBNJGMIy98=",
       "System.Text.Encodings.Web.dll": "sha256-NXJcycwPkccUFCNu0n2sxP9gtjPyjOXALuj6i9hcekw=",
       "System.Text.Json.dll": "sha256-fEDr2La2g24TFY0NqWL2F6vKAXN05tJhPtzzCdEUXd4=",
-      "WasmTetris.Game.dll": "sha256-Ia5PJTAuYlJec6PssZ6H3MvDDJxTDp78Eq7Sx3Q7YWk="
+      "WasmTetris.Game.dll": "sha256-h4q75ZHSpvYbPNO5XTv\/iiZnVhJiOlMhw5gqRZPPq4c="
     },
     "extensions": null,
     "lazyAssembly": null,
