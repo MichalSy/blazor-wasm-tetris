@@ -62,9 +62,7 @@ public class RenderEngine : IRenderEngine
             gameObject.Render(this);
         }
 
-        var images = _nextRenderImageStack.ToArray();
+        await _jsReference!.InvokeVoidAsync("drawImages", (object)_nextRenderImageStack);
         _nextRenderImageStack.Clear();
-
-        await _jsReference!.InvokeVoidAsync("drawImages", (object)images!.ToArray());
     }
 }
