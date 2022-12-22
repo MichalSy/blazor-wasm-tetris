@@ -35,6 +35,15 @@
             }
         }
 
+        drawImages(images: Array<{ imageUrl: string, positionX: number, positionY: number }>) {
+            for (let i of images) {
+                let image = this.imageLoader.getImage(i.imageUrl);
+                if (image !== undefined) {
+                    this.renderContext.drawImage(this.imageLoader.getImage(i.imageUrl), i.positionX, i.positionY);
+                }
+            }
+        }
+
         update(deltaTime) {
             this.renderContext.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 

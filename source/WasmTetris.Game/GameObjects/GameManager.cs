@@ -9,9 +9,13 @@ public class GameManager : GameObject
 
     public override void Update(IRenderEngine renderEngine, float time)
     {
-        if (_lastInsert.AddMilliseconds(10) < DateTime.UtcNow)
+        if (_lastInsert.AddMilliseconds(30) < DateTime.UtcNow)
         {
             //Console.WriteLine("Add");
+            renderEngine.AddGameObject(new PlayerGO());
+            renderEngine.AddGameObject(new PlayerGO());
+            renderEngine.AddGameObject(new PlayerGO());
+            renderEngine.AddGameObject(new PlayerGO());
             renderEngine.AddGameObject(new PlayerGO());
 
             _lastInsert = DateTime.UtcNow;

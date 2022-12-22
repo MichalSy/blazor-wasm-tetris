@@ -13,6 +13,8 @@ public class RenderEngine : IRenderEngine
 
     private List<GameObject> _activeGameObjects = new();
 
+    private List<ImageData> _nextRenderImageStack = new();
+
     public RenderEngine(IJSRuntime jsRuntime)
     {
         _jsRuntime = jsRuntime ?? throw new ArgumentNullException(nameof(jsRuntime));
@@ -38,14 +40,14 @@ public class RenderEngine : IRenderEngine
         _activeGameObjects.Remove(gameObject);
     }
 
-    public async void DrawImageAsync(string imageUrl, float posX, float posY)
+    public void DrawImageAsync(string imageUrl, float posX, float posY)
     {
-        await _jsReference!.InvokeVoidAsync("drawImage", imageUrl, (int)posX, (int)posY);
+        _nextRenderImageStack.Add(new(imageUrl, (int)posX, (int)posY));
     }
 
 
     [JSInvokable]
-    public void UpdateGameObjects(float deltaTime)
+    public async void UpdateGameObjects(float deltaTime)
     {
         //Console.WriteLine(_activeGameObjects.Count);
         var activeItems = _activeGameObjects.ToArray();
@@ -59,5 +61,10 @@ public class RenderEngine : IRenderEngine
         {
             gameObject.Render(this);
         }
+
+        var images = _nextRenderImageStack.ToArray();
+        _nextRenderImageStack.Clear();
+
+        await _jsReference!.InvokeVoidAsync("drawImages", (object)images!.ToArray());
     }
 }
