@@ -38,7 +38,7 @@
 
         drawRectWithBorder(color: string, posX: number, posY: number, width: number, height: number) {
 
-            this.renderContext.globalAlpha = 0.7;
+            this.renderContext.globalAlpha = 0.75;
             this.renderContext.fillStyle = color;
             this.renderContext.fillRect(posX, posY, width, width);
 

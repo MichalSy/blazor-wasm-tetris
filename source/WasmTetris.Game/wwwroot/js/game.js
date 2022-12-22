@@ -81,7 +81,7 @@ var WasmTetris;
             }
         }
         drawRectWithBorder(color, posX, posY, width, height) {
-            this.renderContext.globalAlpha = 0.7;
+            this.renderContext.globalAlpha = 0.75;
             this.renderContext.fillStyle = color;
             this.renderContext.fillRect(posX, posY, width, width);
             this.renderContext.strokeStyle = '#000';
