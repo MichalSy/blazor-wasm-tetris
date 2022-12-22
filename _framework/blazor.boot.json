@@ -36,7 +36,7 @@
       "System.Runtime.InteropServices.JavaScript.dll": "sha256-yzwrz7wGkCbCGzHjhDdsfqjlUQpaQ54vPWBNJGMIy98=",
       "System.Text.Encodings.Web.dll": "sha256-NXJcycwPkccUFCNu0n2sxP9gtjPyjOXALuj6i9hcekw=",
       "System.Text.Json.dll": "sha256-fEDr2La2g24TFY0NqWL2F6vKAXN05tJhPtzzCdEUXd4=",
-      "WasmTetris.Game.dll": "sha256-HCpgESlh4fWu6S7Bh9X2FOSC36\/JtkKSpghsKuxGzVo="
+      "WasmTetris.Game.dll": "sha256-UJb81TImDO9J+1XYGEi3Qxnig8NgjArQJBC\/m42ZouI="
     },
     "extensions": null,
     "lazyAssembly": null,
@@ -45,12 +45,12 @@
     "runtime": {
       "dotnet.7.0.1.4vfxaiujz8.js": "sha256-M9a0TbouX\/20ifDU69zyPB2Zs+tEuwkpid07AW5oPSk=",
       "dotnet.timezones.blat": "sha256-6Aw0ALXLw\/A0vGcC5uG5GnFafYpL\/iHHLo22LyOR+TA=",
-      "dotnet.wasm": "sha256-rNdjG6O4\/Ajn4XdYE5XoMk1b6ZwZVoariakckrepGXg="
+      "dotnet.wasm": "sha256-DQdHafehw1ATe17dDI31Eb40\/\/nb50RnoGXNU6xGNJo="
     },
     "runtimeAssets": {
       "dotnet.wasm": {
         "behavior": "dotnetwasm",
-        "hash": "sha256-rNdjG6O4\/Ajn4XdYE5XoMk1b6ZwZVoariakckrepGXg="
+        "hash": "sha256-DQdHafehw1ATe17dDI31Eb40\/\/nb50RnoGXNU6xGNJo="
       }
     },
     "satelliteResources": null
