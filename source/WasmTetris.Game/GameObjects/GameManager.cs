@@ -27,7 +27,7 @@ public class GameManager : GameObject
             nextCheckTime = _random.Next(300, 600);
             
                 var nn = new PlayerPieceGameObject();
-                nn.SetFieldSetup(150, 100, 32, 32);
+                nn.SetFieldSetup(20, 50, 32, 32);
                 renderEngine.AddGameObject(nn);
             
             //Console.WriteLine("Add");
