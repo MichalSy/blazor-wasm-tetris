@@ -24,6 +24,8 @@ public class PlayerPieceGameObject : GameObject
 
     private DateTime _lifeSince = DateTime.UtcNow;
 
+    private int _nextRotateDelay = _random.Next(200, 600);
+
     public PlayerPieceGameObject()
     {
         var allPieces = PieceTypes.AllTypes.ToArray();
@@ -66,10 +68,11 @@ public class PlayerPieceGameObject : GameObject
 
     public override void Update(IRenderEngine renderEngine, float time)
     {
-        if (_lastRotate.AddMilliseconds(500) < DateTime.UtcNow)
+        if (_lastRotate.AddMilliseconds(_nextRotateDelay) < DateTime.UtcNow)
         {
             RotateRight();
             _lastRotate = DateTime.UtcNow;
+            _nextRotateDelay = _random.Next(200, 600);
         }
 
         _piecePositionY += (int)Math.Ceiling(30 * time);
@@ -84,13 +87,13 @@ public class PlayerPieceGameObject : GameObject
     {
         foreach (var piece in _currentPiece)
         {
-            var posX = _fieldPositionX + _piecePositionX +(piece.X * _pieceWidth);
-            var posY = _fieldPositionY + _piecePositionY +(piece.Y * _pieceWidth);
+            var posX = _fieldPositionX + _piecePositionX + (piece.X * _pieceWidth);
+            var posY = _fieldPositionY + _piecePositionY + (piece.Y * _pieceWidth);
             renderEngine.DrawRectWithBorder(_color, posX, posY, _pieceWidth, _pieceHeight);
         }
 
-        
+
     }
 
-    
+
 }
