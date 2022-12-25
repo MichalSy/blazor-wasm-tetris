@@ -9,7 +9,7 @@
       "url": "_framework\/dotnet.timezones.blat"
     },
     {
-      "hash": "sha256-zlvKx6teFhcPsMC90n3g0\/lWo2hvxMr97S95Ze5Q554=",
+      "hash": "sha256-ITfvCY8+xQz0HjFGG3gtRkQN6r86TOZop\/GlKBeF3Gw=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -73,7 +73,7 @@
       "url": "_framework\/System.Collections.Concurrent.dll"
     },
     {
-      "hash": "sha256-EzvAElcr3dvXUeQNxUxVjSQst6s2KpTiyYKdcXTocrY=",
+      "hash": "sha256-9U2\/7g84jM3jNRdUISZdDKCLxzTh9xb37aI9izW6Whw=",
       "url": "_framework\/System.Collections.dll"
     },
     {
@@ -97,7 +97,7 @@
       "url": "_framework\/System.Drawing.Primitives.dll"
     },
     {
-      "hash": "sha256-KaHOi3+eyDA7wgsO21GK5o8qRPiXPcJxPk5tsnDHJYM=",
+      "hash": "sha256-m6VOTuKqeaS15F\/ZRoEkrPYA0kaoIR+r2nZmKaJiVnc=",
       "url": "_framework\/System.Linq.dll"
     },
     {
@@ -109,7 +109,7 @@
       "url": "_framework\/System.ObjectModel.dll"
     },
     {
-      "hash": "sha256-nfkbc3y6JEdvPFE4Z7Wb4c3r2HCW2kmKkmcE94D4l34=",
+      "hash": "sha256-hmTsxgwnn4qZFVKJcNStPHgtauF46Y0sWnJ0fO+T8Os=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
@@ -117,7 +117,7 @@
       "url": "_framework\/System.Private.Uri.dll"
     },
     {
-      "hash": "sha256-k7+3jwe+le\/72HBz6ZYLOcvGqc4xaWEEAgFt\/stBYaY=",
+      "hash": "sha256-VGMllfCWv6RIwFNH\/J2uKfq81h2eUifb\/S5oGJProOQ=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -137,7 +137,7 @@
       "url": "_framework\/System.Threading.dll"
     },
     {
-      "hash": "sha256-bsYI72wI7zdTCZcqG\/5GXxNf7RKZw0Di78sdNCqO610=",
+      "hash": "sha256-FrO+9orNT9E+gIzdTEowOk6rlZJqyp0UnYFrDkImlA0=",
       "url": "_framework\/WasmTetris.Game.dll"
     },
     {
@@ -145,7 +145,7 @@
       "url": "_framework\/dotnet.7.0.1.4vfxaiujz8.js"
     },
     {
-      "hash": "sha256-U1kFE3N8dl9NV5BaKgfgWQKYaeqAFqxgFkri22wE7L0=",
+      "hash": "sha256-DAQPeB1vR2gVj7dy6R35PqZP8e67rliFw07yuVwvLPo=",
       "url": "_framework\/dotnet.wasm"
     },
     {
@@ -177,11 +177,11 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-JciEHHamgFItwHAeY8v37KWxrYLmRU+NNqSMdjCTDI0=",
+      "hash": "sha256-bURLFc13E14ZVWoRSwAebffoau9bQskO6TjfuLOqg+4=",
       "url": "js\/game.js"
     },
     {
-      "hash": "sha256-HNR9THRwecpCESDTBic1WwCZLXJZMq7A94QvifT\/ax4=",
+      "hash": "sha256-mEgBpdoSkdzPkLh66nCJfRilhhoK7+H5acdRU6dx0tQ=",
       "url": "js\/game.js.map"
     },
     {
@@ -189,5 +189,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "WlBqRrK1"
+  "version": "PQm3kG9p"
 };

@@ -22,23 +22,23 @@
       "Microsoft.JSInterop.dll": "sha256-iSrG4aIfEw\/shiDFTk82\/yE+3T0mcwYqbjHC7vTJBYc=",
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-bn\/jJGkSeaQbmqAl6uUM0y1joLrVEzldOc3y5mscYMk=",
       "System.Collections.Concurrent.dll": "sha256-urBscnV0Rfsvmm2FffpPx7jgo8GO+4Yt0gQtYiLPqCo=",
-      "System.Collections.dll": "sha256-EzvAElcr3dvXUeQNxUxVjSQst6s2KpTiyYKdcXTocrY=",
+      "System.Collections.dll": "sha256-9U2\/7g84jM3jNRdUISZdDKCLxzTh9xb37aI9izW6Whw=",
       "System.ComponentModel.dll": "sha256-LQCRN10G7vx1ozdhuBeT72jLHw4bNOuR9B5zS7yx1mI=",
       "System.ComponentModel.TypeConverter.dll": "sha256-J5RSZpax3QBx\/98DxIQNvTLxlZafudcY0imqLCvHDaE=",
       "System.Console.dll": "sha256-yoOE0o5DeltV3hKmFpr3Fvv3kh8tVLH5JO0KKShfZbM=",
       "System.Drawing.dll": "sha256-dmsXc\/zOEscgFzc7\/gWgt2Ec6Qfy32\/okFNlGw\/WucI=",
       "System.Drawing.Primitives.dll": "sha256-L8frJSHJ9nbFcx5NLtWcqcPDnKeqEWMVgdOMeyPiVS4=",
-      "System.Linq.dll": "sha256-KaHOi3+eyDA7wgsO21GK5o8qRPiXPcJxPk5tsnDHJYM=",
+      "System.Linq.dll": "sha256-m6VOTuKqeaS15F\/ZRoEkrPYA0kaoIR+r2nZmKaJiVnc=",
       "System.Memory.dll": "sha256-LhiI20vyUzSAGjy2\/hiMrS1kcBvV8BG2dFRk+3V68tw=",
       "System.ObjectModel.dll": "sha256-wl4at8hUDbdbmSWEhM0sI0bbPTs3Brbrctg8foNDg9Q=",
-      "System.Private.CoreLib.dll": "sha256-nfkbc3y6JEdvPFE4Z7Wb4c3r2HCW2kmKkmcE94D4l34=",
+      "System.Private.CoreLib.dll": "sha256-hmTsxgwnn4qZFVKJcNStPHgtauF46Y0sWnJ0fO+T8Os=",
       "System.Private.Uri.dll": "sha256-6lR0k3G4pQCC85Yjj\/oCfxgVo4gti8oKRPttOw+YdR4=",
-      "System.Runtime.dll": "sha256-k7+3jwe+le\/72HBz6ZYLOcvGqc4xaWEEAgFt\/stBYaY=",
+      "System.Runtime.dll": "sha256-VGMllfCWv6RIwFNH\/J2uKfq81h2eUifb\/S5oGJProOQ=",
       "System.Runtime.InteropServices.JavaScript.dll": "sha256-yzwrz7wGkCbCGzHjhDdsfqjlUQpaQ54vPWBNJGMIy98=",
       "System.Text.Encodings.Web.dll": "sha256-NXJcycwPkccUFCNu0n2sxP9gtjPyjOXALuj6i9hcekw=",
       "System.Text.Json.dll": "sha256-fEDr2La2g24TFY0NqWL2F6vKAXN05tJhPtzzCdEUXd4=",
       "System.Threading.dll": "sha256-bsU+q53OkgajbgMUeEpBf\/m7TEMgC48wljQG6wO4TMs=",
-      "WasmTetris.Game.dll": "sha256-bsYI72wI7zdTCZcqG\/5GXxNf7RKZw0Di78sdNCqO610="
+      "WasmTetris.Game.dll": "sha256-FrO+9orNT9E+gIzdTEowOk6rlZJqyp0UnYFrDkImlA0="
     },
     "extensions": null,
     "lazyAssembly": null,
@@ -47,12 +47,12 @@
     "runtime": {
       "dotnet.7.0.1.4vfxaiujz8.js": "sha256-npCjhDpfqSKvXoz3Lpc6AYIQda6XA0oLY2Q4jm25L8E=",
       "dotnet.timezones.blat": "sha256-6Aw0ALXLw\/A0vGcC5uG5GnFafYpL\/iHHLo22LyOR+TA=",
-      "dotnet.wasm": "sha256-U1kFE3N8dl9NV5BaKgfgWQKYaeqAFqxgFkri22wE7L0="
+      "dotnet.wasm": "sha256-DAQPeB1vR2gVj7dy6R35PqZP8e67rliFw07yuVwvLPo="
     },
     "runtimeAssets": {
       "dotnet.wasm": {
         "behavior": "dotnetwasm",
-        "hash": "sha256-U1kFE3N8dl9NV5BaKgfgWQKYaeqAFqxgFkri22wE7L0="
+        "hash": "sha256-DAQPeB1vR2gVj7dy6R35PqZP8e67rliFw07yuVwvLPo="
       }
     },
     "satelliteResources": null
