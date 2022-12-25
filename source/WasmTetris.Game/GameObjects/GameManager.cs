@@ -12,13 +12,14 @@ public class GameManager : GameObject
     private static readonly int _fieldHorzMargin = 60;
     private static readonly int _maxPieceWidth = 32;
 
-
     private int _pieceWidth = 16;
-    private int _fieldTopMargin = 100;
+    private int _fieldTopMargin = 120;
+
+    private int _fieldLinesX = 10;
+    private int _fieldLinesY = 25;
     private int _fieldWidth = 300;
     private int _fieldHeight = 500;
-    private int _fieldLinesX = 12;
-    private int _fieldLinesY = 25;
+    
     private int _gameWidth = 300;
     private int _gameHeight = 600;
 
@@ -37,10 +38,13 @@ public class GameManager : GameObject
     private void RenderEngine_OnWindowSizeChanged(object? sender, Size windowSize)
     {
         int maxFieldWidth = windowSize.Width - (_fieldHorzMargin * 2);
-        int maxPieceWidth = maxFieldWidth / 12;
-
+        int maxPieceWidth = maxFieldWidth / _fieldLinesX;
         _pieceWidth = Math.Min(maxPieceWidth, _maxPieceWidth);
-        _fieldTopMargin = (_pieceWidth * 5) + 100;
+
+        int maxFieldHeight = windowSize.Height - _fieldTopMargin;
+        int maxPieceHeight = maxFieldHeight / _fieldLinesY;
+
+        _pieceWidth = Math.Min(maxPieceWidth, maxPieceHeight);
 
         _fieldWidth = _pieceWidth * _fieldLinesX;
         _fieldHeight = _pieceWidth * _fieldLinesY;
@@ -56,13 +60,18 @@ public class GameManager : GameObject
     {
         if (nextCheckTime == 0 || _lastInsert.AddMilliseconds(nextCheckTime) < DateTime.UtcNow)
         {
-            nextCheckTime = _random.Next(300, 600);
+            nextCheckTime = _random.Next(500, 1000);
 
             var nn = new PlayerPieceGameObject();
-            nn.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _pieceWidth, _pieceWidth);
+            nn.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
             renderEngine.AddGameObject(nn);
 
             _lastInsert = DateTime.UtcNow;
         }
+    }
+
+    public override void Render(IRenderEngine renderEngine)
+    {
+        renderEngine.AddDrawStrokeRectToRender(_fieldHorzMargin, _fieldTopMargin, _fieldWidth, _fieldHeight, "#3260a8", 2);
     }
 }

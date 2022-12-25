@@ -10,6 +10,7 @@ public class PlayerPieceGameObject : GameObject
     private static Random _random = new((int)DateTime.Now.Ticks);
     private int _fieldPositionX;
     private int _fieldPositionY;
+    private int _fieldLinesX;
     private int _pieceWidth;
     private int _pieceHeight;
 
@@ -26,20 +27,27 @@ public class PlayerPieceGameObject : GameObject
 
     private int _nextRotateDelay = _random.Next(200, 600);
 
+
+    private int _posXIndex = 8;
+
+
     public PlayerPieceGameObject()
     {
         var allPieces = PieceTypes.AllTypes.ToArray();
         _currentPiece = allPieces[_random.Next(0, allPieces.Length - 1)];
 
-        _piecePositionX = _random.Next(0, 300);
+        RotateRight();
     }
 
-    internal void SetFieldSetup(int fieldPositionX, int fieldPositionY, int pieceWidth, int pieceHeight)
+    internal void SetFieldSetup(int fieldPositionX, int fieldPositionY, int fieldLinesX, int pieceWidth, int pieceHeight)
     {
         _fieldPositionX = fieldPositionX;
         _fieldPositionY = fieldPositionY;
+        _fieldLinesX = fieldLinesX;
         _pieceWidth = pieceWidth;
         _pieceHeight = pieceHeight;
+
+        _posXIndex = _random.Next(0, _fieldLinesX);
     }
 
     private void RotateRight()
@@ -68,14 +76,26 @@ public class PlayerPieceGameObject : GameObject
 
     public override void Update(IRenderEngine renderEngine, float time)
     {
-        if (_lastRotate.AddMilliseconds(_nextRotateDelay) < DateTime.UtcNow)
+        //if (_lastRotate.AddMilliseconds(_nextRotateDelay) < DateTime.UtcNow)
+        //{
+        //    RotateRight();
+        //    _lastRotate = DateTime.UtcNow;
+        //    _nextRotateDelay = _random.Next(200, 600);
+        //}
+
+        int xdiff = _posXIndex + _currentPiece.Min(p => p.X);
+        if (xdiff < 0)
         {
-            RotateRight();
-            _lastRotate = DateTime.UtcNow;
-            _nextRotateDelay = _random.Next(200, 600);
+            _posXIndex -= xdiff;
+        }
+        xdiff = _fieldLinesX - 1 - (_posXIndex + _currentPiece.Max(p => p.X));
+        if (xdiff < 0)
+        {
+            _posXIndex += xdiff;
         }
 
-        _piecePositionY += (int)Math.Ceiling(30 * time);
+        _piecePositionX = _posXIndex * _pieceWidth;
+        _piecePositionY += (int)Math.Ceiling(20 * time);
 
         if (_lifeSince.AddSeconds(6) < DateTime.UtcNow)
         {

@@ -14,4 +14,5 @@ public interface IRenderEngine
     void RemoveGameObject(GameObject gameObject);
     void StartRenderEngineAsync();
     void SetCanvasSizeAsync(Size newSize);
+    void AddDrawStrokeRectToRender(int posX, int posY, int width, int height, string htmlColor, int lineWidth = 1, float alpha = 1);
 }

@@ -81,14 +81,37 @@ var WasmTetris;
             this.detectWindowSize();
             window.requestAnimationFrame(this.loop);
         }
-        drawRectWithBorder(color, posX, posY, width, height) {
-            this.renderContext.globalAlpha = 0.75;
-            this.renderContext.fillStyle = color;
-            this.renderContext.fillRect(posX, posY, width, width);
-            this.renderContext.strokeStyle = '#000';
-            this.renderContext.lineWidth = 2;
+        drawRectWithBorder(command) {
+            let data = command.data;
+            this.drawFillRect({
+                data: { color: data.color, alpha: 0.75 },
+                positionX: command.positionX,
+                positionY: command.positionY,
+                width: command.width,
+                height: command.height
+            });
+            this.drawStrokeRect({
+                data: { lineWidth: 2, alpha: 0.15 },
+                positionX: command.positionX,
+                positionY: command.positionY,
+                width: command.width,
+                height: command.height
+            });
+        }
+        drawFillRect(command) {
+            let data = command.data;
+            this.renderContext.fillStyle = data.color ?? "#000";
+            this.renderContext.globalAlpha = data.alpha ?? 1;
+            this.renderContext.fillRect(command.positionX, command.positionY, command.width, command.height);
             this.renderContext.globalAlpha = 1;
-            this.renderContext.strokeRect(posX, posY, width, height);
+        }
+        drawStrokeRect(command) {
+            let data = command.data;
+            this.renderContext.strokeStyle = data.color ?? "#000";
+            this.renderContext.lineWidth = data.lineWidth ?? 1;
+            this.renderContext.globalAlpha = data.alpha ?? 1;
+            this.renderContext.strokeRect(command.positionX, command.positionY, command.width, command.height);
+            this.renderContext.globalAlpha = 1;
         }
         drawImages(images) {
             for (let i of images) {
@@ -108,8 +131,13 @@ var WasmTetris;
                     }
                 }
                 else if (obj.type === "RectWithBorder") {
-                    let i = obj.data;
-                    this.drawRectWithBorder(i.color, obj.positionX, obj.positionY, obj.width, obj.height);
+                    this.drawRectWithBorder(obj);
+                }
+                else if (obj.type === "FillRect") {
+                    this.drawFillRect(obj);
+                }
+                else if (obj.type === "StrokeRect") {
+                    this.drawStrokeRect(obj);
                 }
             }
         }

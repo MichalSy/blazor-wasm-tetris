@@ -65,6 +65,24 @@ public class RenderEngine : IRenderEngine
         });
     }
 
+    public void AddDrawStrokeRectToRender(int posX, int posY, int width, int height, string htmlColor, int lineWidth = 1, float alpha = 1)
+    {
+        _nextRenderObjectStack.Add(new RenderObject<object>
+        {
+            Type = "StrokeRect",
+            PositionX = posX,
+            PositionY = posY,
+            Width = width,
+            Height = height,
+            Data = new
+            {
+                Color = htmlColor,
+                LineWidth = lineWidth,
+                Alpha = alpha
+            }
+        });
+    }
+
 
     public async void SetCanvasSizeAsync(Size newSize)
     {
