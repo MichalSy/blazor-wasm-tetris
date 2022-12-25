@@ -14,7 +14,7 @@ public partial class Game
         renderEngine.AddImageAsset("images/ChestBlue.png");
         renderEngine.AddImageAsset("images/tile.png");
 
-        renderEngine.AddGameObject(new GameManager());
+        renderEngine.AddGameObject(new GameManager(renderEngine));
 
     }
 

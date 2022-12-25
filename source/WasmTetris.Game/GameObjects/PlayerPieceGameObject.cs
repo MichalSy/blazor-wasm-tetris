@@ -89,7 +89,7 @@ public class PlayerPieceGameObject : GameObject
         {
             var posX = _fieldPositionX + _piecePositionX + (piece.X * _pieceWidth);
             var posY = _fieldPositionY + _piecePositionY + (piece.Y * _pieceWidth);
-            renderEngine.DrawRectWithBorder(_color, posX, posY, _pieceWidth, _pieceHeight);
+            renderEngine.AddDrawRectWithBorderToRender(_color, posX, posY, _pieceWidth, _pieceHeight);
         }
 
 

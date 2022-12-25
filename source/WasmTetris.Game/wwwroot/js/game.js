@@ -63,12 +63,12 @@ var WasmTetris;
             this.renderEngine = renderEngine;
             this.canvasElement = document.querySelector("canvas");
             this.renderContext = this.canvasElement.getContext("2d");
+            window.addEventListener("resize", () => this.detectWindowSize());
         }
-        resizeGame() {
-            this.renderEngine.invokeMethodAsync("ResizeGame", window.innerWidth, window.innerHeight);
+        detectWindowSize() {
+            this.renderEngine.invokeMethodAsync("SetWindowSize", window.innerWidth, window.innerHeight);
         }
         setCanvasSize(width, height) {
-            console.log("A");
             this.canvasWidth = width;
             this.canvasHeight = height;
             this.canvasElement.width = this.canvasWidth;
@@ -78,9 +78,7 @@ var WasmTetris;
             await this.imageLoader.loadImages(imageUrls);
         }
         async startEngine() {
-            window.addEventListener("resize", () => this.resizeGame());
-            this.resizeGame();
-            //this.setCanvasSize(400, 600);
+            this.detectWindowSize();
             window.requestAnimationFrame(this.loop);
         }
         drawRectWithBorder(color, posX, posY, width, height) {

@@ -17,15 +17,14 @@
             this.canvasElement = document.querySelector("canvas")
             this.renderContext = this.canvasElement.getContext("2d");
 
-            
+            window.addEventListener("resize", () => this.detectWindowSize());
         }
 
-        resizeGame() {
-            this.renderEngine.invokeMethodAsync("ResizeGame", window.innerWidth, window.innerHeight);
+        detectWindowSize() {
+            this.renderEngine.invokeMethodAsync("SetWindowSize", window.innerWidth, window.innerHeight);
         }
 
         setCanvasSize(width: number, height: number) {
-            console.log("A");
             this.canvasWidth = width;
             this.canvasHeight = height;
             this.canvasElement.width = this.canvasWidth;
@@ -37,10 +36,7 @@
         }
 
         async startEngine() {
-            window.addEventListener("resize", () => this.resizeGame());
-            this.resizeGame();
-
-            //this.setCanvasSize(400, 600);
+            this.detectWindowSize();
 
             window.requestAnimationFrame(this.loop);
         }

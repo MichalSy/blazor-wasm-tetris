@@ -8,6 +8,6 @@ public class RectWithBorderGameObject : GameObject
 
     public override void Render(IRenderEngine renderEngine)
     {
-        renderEngine.DrawRectWithBorder(Color, (int)PositionY, (int)PositionX, Width, Height);
+        renderEngine.AddDrawRectWithBorderToRender(Color, (int)PositionY, (int)PositionX, Width, Height);
     }
 }

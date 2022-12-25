@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using System.Drawing;
 using Microsoft.JSInterop;
 using WasmTetris.Game.BaseGameObject;
 
@@ -9,41 +9,36 @@ public class RenderEngine : IRenderEngine
     private readonly IJSRuntime _jsRuntime;
     private IJSObjectReference? _jsReference;
 
-    private List<string> _imageAssetUrls = new();
+    private readonly List<string> _imageAssetsPreloadUrls = new();
+    private readonly List<GameObject> _activeGameObjects = new();
+    private readonly List<object> _nextRenderObjectStack = new();
 
-    private List<GameObject> _activeGameObjects = new();
-
-    private List<object> _nextRenderStack = new();
+    public event EventHandler<Size>? OnWindowSizeChanged;
 
     public RenderEngine(IJSRuntime jsRuntime)
     {
         _jsRuntime = jsRuntime ?? throw new ArgumentNullException(nameof(jsRuntime));
     }
 
-    public void AddImageAsset(string imageAssetUrl) => _imageAssetUrls.Add(imageAssetUrl);
+    public void AddImageAsset(string imageAssetUrl) => _imageAssetsPreloadUrls.Add(imageAssetUrl);
 
     public async void StartRenderEngineAsync()
     {
         _jsReference = await _jsRuntime.InvokeAsync<IJSObjectReference>("WasmTetris.createRenderEngineInstance", DotNetObjectReference.Create(this));
-        await _jsReference.InvokeVoidAsync("loadImages", _imageAssetUrls);
-        await _jsReference.InvokeVoidAsync("startEngine", _imageAssetUrls);
+        await _jsReference.InvokeVoidAsync("loadImages", _imageAssetsPreloadUrls);
+        await _jsReference.InvokeVoidAsync("startEngine");
     }
 
-    public void AddGameObject(GameObject gameObject)
-    {
-        //Console.WriteLine(_activeGameObjects.Count);
-        _activeGameObjects.Add(gameObject);
-    }
-
+    public void AddGameObject(GameObject gameObject) => _activeGameObjects.Add(gameObject);
     public void RemoveGameObject(GameObject gameObject)
     {
         gameObject.IsDestroyed = true;
         _activeGameObjects.Remove(gameObject);
     }
 
-    public void DrawImageAsync(string imageUrl, int posX, int posY)
+    public void AddDrawImageToRender(string imageUrl, int posX, int posY)
     {
-        _nextRenderStack.Add(new RenderObject<RenderImageObject>
+        _nextRenderObjectStack.Add(new RenderObject<RenderImageObject>
         {
             Type = "Image",
             PositionX = posX,
@@ -54,10 +49,9 @@ public class RenderEngine : IRenderEngine
             }
         });
     }
-
-    public void DrawRectWithBorder(string htmlColor, int posX, int posY, int width, int height)
+    public void AddDrawRectWithBorderToRender(string htmlColor, int posX, int posY, int width, int height)
     {
-        _nextRenderStack.Add(new RenderObject<RenderRectWithBorderObject>
+        _nextRenderObjectStack.Add(new RenderObject<RenderRectWithBorderObject>
         {
             Type = "RectWithBorder",
             PositionX = posX,
@@ -71,13 +65,23 @@ public class RenderEngine : IRenderEngine
         });
     }
 
-    [JSInvokable]
-    public async void ResizeGame(int width, int height)
-    {
-        width = 400;
-        height = 600;
 
-        await _jsReference!.InvokeVoidAsync("setCanvasSize", width, height);
+    public async void SetCanvasSizeAsync(Size newSize)
+    {
+        await _jsReference!.InvokeVoidAsync("setCanvasSize", newSize.Width, newSize.Height);
+    }
+
+    [JSInvokable]
+    public async void SetWindowSize(int width, int height)
+    {
+        if (OnWindowSizeChanged is not null)
+        {
+            OnWindowSizeChanged.Invoke(this, new Size(width, height));
+        }
+        else
+        {
+            await _jsReference!.InvokeVoidAsync("setCanvasSize", width, height);
+        }
     }
 
     [JSInvokable]
@@ -96,7 +100,7 @@ public class RenderEngine : IRenderEngine
         }
 
 
-        await _jsReference!.InvokeVoidAsync("drawObjects", _nextRenderStack);
-        _nextRenderStack.Clear();
+        await _jsReference!.InvokeVoidAsync("drawObjects", _nextRenderObjectStack);
+        _nextRenderObjectStack.Clear();
     }
 }
