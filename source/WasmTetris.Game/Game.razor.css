@@ -1,5 +1,10 @@
-﻿
+﻿:host{
+    background: red;
+}
+
 canvas {
-    border: 3px solid #fd3300;
-    display: block;
+    display: inline-block;
+    border-radius: 2px;
+    margin: 1rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }

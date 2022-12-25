@@ -58,27 +58,30 @@ var WasmTetris;
         fpsCalculator = new WasmTetris.FpsCalculator();
         imageLoader = new WasmTetris.ImageLoader();
         renderEngine;
+        canvasElement;
         constructor(renderEngine) {
             this.renderEngine = renderEngine;
+            this.canvasElement = document.querySelector("canvas");
+            this.renderContext = this.canvasElement.getContext("2d");
+        }
+        resizeGame() {
+            this.renderEngine.invokeMethodAsync("ResizeGame", window.innerWidth, window.innerHeight);
+        }
+        setCanvasSize(width, height) {
+            console.log("A");
+            this.canvasWidth = width;
+            this.canvasHeight = height;
+            this.canvasElement.width = this.canvasWidth;
+            this.canvasElement.height = this.canvasHeight;
         }
         async loadImages(imageUrls) {
             await this.imageLoader.loadImages(imageUrls);
         }
         async startEngine() {
-            let canvas = document.querySelector("canvas");
-            canvas.width = window.innerWidth - 6;
-            canvas.height = window.innerHeight - 6;
-            this.renderContext = canvas.getContext("2d");
-            this.canvasWidth = canvas.width;
-            this.canvasHeight = canvas.height;
+            window.addEventListener("resize", () => this.resizeGame());
+            this.resizeGame();
+            //this.setCanvasSize(400, 600);
             window.requestAnimationFrame(this.loop);
-        }
-        drawImage(imageUrl, posX, posY) {
-            let image = this.imageLoader.getImage(imageUrl);
-            if (image !== undefined) {
-                this.renderContext.drawImage(this.imageLoader.getImage(imageUrl), posX, posY);
-                //this.drawRectWithBorder("#ff0000", posX, posY);
-            }
         }
         drawRectWithBorder(color, posX, posY, width, height) {
             this.renderContext.globalAlpha = 0.75;

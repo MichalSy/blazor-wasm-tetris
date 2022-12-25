@@ -72,9 +72,17 @@ public class RenderEngine : IRenderEngine
     }
 
     [JSInvokable]
+    public async void ResizeGame(int width, int height)
+    {
+        width = 400;
+        height = 600;
+
+        await _jsReference!.InvokeVoidAsync("setCanvasSize", width, height);
+    }
+
+    [JSInvokable]
     public async void UpdateGameObjects(float deltaTime)
     {
-        //Console.WriteLine(_activeGameObjects.Count);
         var activeItems = _activeGameObjects.ToArray();
 
         foreach (var gameObject in activeItems)
