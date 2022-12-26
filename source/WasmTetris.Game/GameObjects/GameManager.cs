@@ -25,6 +25,8 @@ public class GameManager : GameObject
 
     private int nextCheckTime;
     private DateTime _lastInsert = DateTime.MinValue;
+
+    private FieldGameObject _fieldGO = new();
     
 
     public GameManager(IRenderEngine renderEngine)
@@ -58,11 +60,13 @@ public class GameManager : GameObject
 
     public override void Update(IRenderEngine renderEngine, float time)
     {
+        _fieldGO.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _fieldLinesY, _pieceWidth, _pieceWidth);
+
         if (nextCheckTime == 0 || _lastInsert.AddMilliseconds(nextCheckTime) < DateTime.UtcNow)
         {
-            nextCheckTime = _random.Next(500, 1000);
+            nextCheckTime = _random.Next(2000, 3000);
 
-            var nn = new PlayerPieceGameObject();
+            var nn = new PlayerPieceGameObject(_fieldGO);
             nn.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
             renderEngine.AddGameObject(nn);
 
@@ -72,6 +76,7 @@ public class GameManager : GameObject
 
     public override void Render(IRenderEngine renderEngine)
     {
-        renderEngine.AddDrawStrokeRectToRender(_fieldHorzMargin, _fieldTopMargin, _fieldWidth, _fieldHeight, "#3260a8", 2);
+        _fieldGO.Render(renderEngine);
+        
     }
 }

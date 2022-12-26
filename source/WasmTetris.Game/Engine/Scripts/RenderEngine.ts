@@ -45,12 +45,12 @@
             let data = <any>command.data;
 
             this.drawFillRect({
-                data: { color: data.color, alpha: 0.75 },
+                data: { color: data.color, alpha: 1 },
                 positionX: command.positionX,
                 positionY: command.positionY,
                 width: command.width,
                 height: command.height
-            })
+            });
 
             this.drawStrokeRect({
                 data: { lineWidth: 2, alpha: 0.15 },
@@ -58,7 +58,7 @@
                 positionY: command.positionY,
                 width: command.width,
                 height: command.height
-            })
+            });
         }
 
         private drawFillRect(command: { data: unknown, positionX: number, positionY: number, width: number, height: number }) {
@@ -77,6 +77,21 @@
             this.renderContext.lineWidth = data.lineWidth ?? 1;
             this.renderContext.globalAlpha = data.alpha ?? 1;
             this.renderContext.strokeRect(command.positionX, command.positionY, command.width, command.height);
+            this.renderContext.globalAlpha = 1;
+        }
+
+        private drawLine(command: { data: unknown, positionX: number, positionY: number, width: number, height: number }) {
+            let data = <any>command.data;
+
+            this.renderContext.strokeStyle = data.color ?? "#000";
+            this.renderContext.lineWidth = data.lineWidth ?? 1;
+            this.renderContext.globalAlpha = data.alpha ?? 1;
+
+            this.renderContext.beginPath();
+            this.renderContext.moveTo(command.positionX, command.positionY);
+            this.renderContext.lineTo(data.positionEndX ?? command.positionX + 10, data.positionEndY ?? command.positionY + 10);
+            this.renderContext.stroke();
+
             this.renderContext.globalAlpha = 1;
         }
 
@@ -104,6 +119,8 @@
                     this.drawFillRect(obj);
                 } else if (obj.type === "StrokeRect") {
                     this.drawStrokeRect(obj);
+                } else if (obj.type === "Line") {
+                    this.drawLine(obj);
                 }
             }
         }

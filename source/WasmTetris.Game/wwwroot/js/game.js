@@ -84,7 +84,7 @@ var WasmTetris;
         drawRectWithBorder(command) {
             let data = command.data;
             this.drawFillRect({
-                data: { color: data.color, alpha: 0.75 },
+                data: { color: data.color, alpha: 1 },
                 positionX: command.positionX,
                 positionY: command.positionY,
                 width: command.width,
@@ -113,6 +113,17 @@ var WasmTetris;
             this.renderContext.strokeRect(command.positionX, command.positionY, command.width, command.height);
             this.renderContext.globalAlpha = 1;
         }
+        drawLine(command) {
+            let data = command.data;
+            this.renderContext.strokeStyle = data.color ?? "#000";
+            this.renderContext.lineWidth = data.lineWidth ?? 1;
+            this.renderContext.globalAlpha = data.alpha ?? 1;
+            this.renderContext.beginPath();
+            this.renderContext.moveTo(command.positionX, command.positionY);
+            this.renderContext.lineTo(data.positionEndX ?? command.positionX + 10, data.positionEndY ?? command.positionY + 10);
+            this.renderContext.stroke();
+            this.renderContext.globalAlpha = 1;
+        }
         drawImages(images) {
             for (let i of images) {
                 let image = this.imageLoader.getImage(i.imageUrl);
@@ -138,6 +149,9 @@ var WasmTetris;
                 }
                 else if (obj.type === "StrokeRect") {
                     this.drawStrokeRect(obj);
+                }
+                else if (obj.type === "Line") {
+                    this.drawLine(obj);
                 }
             }
         }

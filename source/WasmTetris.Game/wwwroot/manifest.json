@@ -1,6 +1,6 @@
 {
-  "name": "WasmTetris.Game",
-  "short_name": "SWasmTetris.Game",
+  "name": "Wasm Tetris",
+  "short_name": "Wasm Tetris",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

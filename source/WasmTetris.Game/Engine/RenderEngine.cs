@@ -83,6 +83,26 @@ public class RenderEngine : IRenderEngine
         });
     }
 
+    public void AddDrawLineToRender(int posX, int posY, int posEndX, int posEndY, string htmlColor, int lineWidth = 1, float alpha = 1)
+    {
+        _nextRenderObjectStack.Add(new RenderObject<object>
+        {
+            Type = "Line",
+            PositionX = posX,
+            PositionY = posY,
+            Width = 0,
+            Height = 0,
+            Data = new
+            {
+                Color = htmlColor,
+                LineWidth = lineWidth,
+                Alpha = alpha,
+                PositionEndX = posEndX,
+                PositionEndY = posEndY
+            }
+        });
+    }
+
 
     public async void SetCanvasSizeAsync(Size newSize)
     {
