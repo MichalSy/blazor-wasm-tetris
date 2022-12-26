@@ -9,7 +9,7 @@
       "url": "_framework\/dotnet.timezones.blat"
     },
     {
-      "hash": "sha256-ITfvCY8+xQz0HjFGG3gtRkQN6r86TOZop\/GlKBeF3Gw=",
+      "hash": "sha256-nTE6ktbff0+M7UrBrZWWpBT73r2mVr5EofImAurfE9Q=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -73,7 +73,7 @@
       "url": "_framework\/System.Collections.Concurrent.dll"
     },
     {
-      "hash": "sha256-9U2\/7g84jM3jNRdUISZdDKCLxzTh9xb37aI9izW6Whw=",
+      "hash": "sha256-4jjj\/Tn3c6r1ycGxJcxe9HqB\/pzo4znmT6ju1kZANWY=",
       "url": "_framework\/System.Collections.dll"
     },
     {
@@ -109,7 +109,7 @@
       "url": "_framework\/System.ObjectModel.dll"
     },
     {
-      "hash": "sha256-hmTsxgwnn4qZFVKJcNStPHgtauF46Y0sWnJ0fO+T8Os=",
+      "hash": "sha256-QblC53NT4U1aLdxzqcTc7zByFm8ojh5zUbaT3On4Mb8=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
@@ -117,7 +117,7 @@
       "url": "_framework\/System.Private.Uri.dll"
     },
     {
-      "hash": "sha256-VGMllfCWv6RIwFNH\/J2uKfq81h2eUifb\/S5oGJProOQ=",
+      "hash": "sha256-8IqKsOZJGGhQcjw03JqJroSJzn1ET06txTa\/AmjSRZI=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -137,7 +137,7 @@
       "url": "_framework\/System.Threading.dll"
     },
     {
-      "hash": "sha256-FrO+9orNT9E+gIzdTEowOk6rlZJqyp0UnYFrDkImlA0=",
+      "hash": "sha256-LtaTRPXiUH+7QwaMRYvjBVok+GTG0jUZoMDjIAMQukA=",
       "url": "_framework\/WasmTetris.Game.dll"
     },
     {
@@ -145,7 +145,7 @@
       "url": "_framework\/dotnet.7.0.1.4vfxaiujz8.js"
     },
     {
-      "hash": "sha256-DAQPeB1vR2gVj7dy6R35PqZP8e67rliFw07yuVwvLPo=",
+      "hash": "sha256-q2u8W1jjVQYTIni7EfC4vJisTSJJwXHWMJmbIHhecKs=",
       "url": "_framework\/dotnet.wasm"
     },
     {
@@ -177,17 +177,17 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-bURLFc13E14ZVWoRSwAebffoau9bQskO6TjfuLOqg+4=",
+      "hash": "sha256-gE6ish+HgHumPwAhMENWXiW0h4B7KG6PZmt0QzOCcTg=",
       "url": "js\/game.js"
     },
     {
-      "hash": "sha256-mEgBpdoSkdzPkLh66nCJfRilhhoK7+H5acdRU6dx0tQ=",
+      "hash": "sha256-vpbcosDe\/3jFkCpvzb9PK0VFu27H\/Kq+VFU9rb3JybI=",
       "url": "js\/game.js.map"
     },
     {
-      "hash": "sha256-vpDJXjGrJ3FkD3R9lC6UIcN+wq6FBqJaf8160XP9rPg=",
+      "hash": "sha256-6GTeg4Xl3iNdi0rln\/M4nfiLCjlG0a6tIVe\/yy5\/jjY=",
       "url": "manifest.json"
     }
   ],
-  "version": "PQm3kG9p"
+  "version": "GuhmZx+3"
 };
