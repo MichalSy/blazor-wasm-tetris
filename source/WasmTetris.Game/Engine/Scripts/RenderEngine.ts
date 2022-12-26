@@ -20,6 +20,9 @@
             window.addEventListener("resize", () => this.detectWindowSize());
             window.addEventListener("keydown", (event) => this.renderEngine.invokeMethodAsync("SendKeyUpdate", event.type, event.keyCode));
             window.addEventListener("keyup", (event) => this.renderEngine.invokeMethodAsync("SendKeyUpdate", event.type, event.keyCode));
+
+            window.addEventListener("touchstart", (event) => this.renderEngine.invokeMethodAsync("SendTouchUpdate", event.type, event.changedTouches[0].clientX, event.changedTouches[0].clientY));
+            window.addEventListener("touchend", (event) => this.renderEngine.invokeMethodAsync("SendTouchUpdate", event.type, event.changedTouches[0].clientX, event.changedTouches[0].clientY));
         }
 
         detectWindowSize() {
@@ -55,7 +58,7 @@
             });
 
             this.drawStrokeRect({
-                data: { lineWidth: 2, alpha: 0.15 },
+                data: { lineWidth: 2, alpha: 0.8 },
                 positionX: command.positionX,
                 positionY: command.positionY,
                 width: command.width,

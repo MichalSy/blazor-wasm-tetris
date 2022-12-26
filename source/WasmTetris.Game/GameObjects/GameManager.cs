@@ -19,7 +19,7 @@ public class GameManager : GameObject
     private int _fieldLinesY = 25;
     private int _fieldWidth = 300;
     private int _fieldHeight = 500;
-    
+
     private int _gameWidth = 300;
     private int _gameHeight = 600;
 
@@ -34,7 +34,10 @@ public class GameManager : GameObject
     {
         _renderEngine = renderEngine ?? throw new ArgumentNullException(nameof(renderEngine));
         _renderEngine.OnWindowSizeChanged += RenderEngine_OnWindowSizeChanged;
+        _renderEngine.OnTouchStarted += RenderEngine_OnTouchStarted;
     }
+
+
 
 
     // Recalculate game size
@@ -56,12 +59,26 @@ public class GameManager : GameObject
 
         _renderEngine.SetCanvasSizeAsync(new Size(_gameWidth, _gameHeight));
 
-        Console.WriteLine($"Game: {_gameWidth}x{_gameHeight}, Field: {_fieldWidth}x{_fieldHeight},  Piece: {_pieceWidth}");
+        _fieldGO.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _fieldLinesY, _pieceWidth, _pieceWidth);
+
+        //Console.WriteLine($"Game: {_gameWidth}x{_gameHeight}, Field: {_fieldWidth}x{_fieldHeight},  Piece: {_pieceWidth}");
+    }
+
+    private void RenderEngine_OnTouchStarted(object? sender, Point e)
+    {
+        if (e.X < _gameWidth / 2)
+        {
+            _currentPlayerPiece?.MoveLeft();
+        }
+        else
+        {
+            _currentPlayerPiece?.MoveRight();
+        }
     }
 
     public override void Update(IRenderEngine renderEngine, float time)
     {
-        _fieldGO.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _fieldLinesY, _pieceWidth, _pieceWidth);
+
 
         if (_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed)
         {
@@ -85,6 +102,6 @@ public class GameManager : GameObject
     public override void Render(IRenderEngine renderEngine)
     {
         _fieldGO.Render(renderEngine);
-        
+
     }
 }

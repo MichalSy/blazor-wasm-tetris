@@ -14,6 +14,7 @@ public class RenderEngine : IRenderEngine
     private readonly List<object> _nextRenderObjectStack = new();
 
     public event EventHandler<Size>? OnWindowSizeChanged;
+    public event EventHandler<Point>? OnTouchStarted;
 
     private bool[] _keyDownCache = new bool[200];
 
@@ -159,5 +160,18 @@ public class RenderEngine : IRenderEngine
                 _keyDownCache[keyCode] = false;
                 return;
         }
+    }
+
+    [JSInvokable]
+    public void SendTouchUpdate(string eventType, int posX, int posY)
+    {
+        switch(eventType)
+        {
+            case "touchstart":
+                OnTouchStarted?.Invoke(this, new Point(posX, posY));
+                return;
+        }
+
+        Console.WriteLine($"E: {eventType}, posX: {posX}, posY: {posY}");
     }
 }

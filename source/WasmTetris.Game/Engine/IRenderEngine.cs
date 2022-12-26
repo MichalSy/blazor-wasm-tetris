@@ -6,6 +6,7 @@ namespace WasmTetris.Game.Engine;
 public interface IRenderEngine
 {
     event EventHandler<Size>? OnWindowSizeChanged;
+    event EventHandler<Point>? OnTouchStarted;
 
     void AddGameObject(GameObject gameObject);
     void AddImageAsset(string imageAssetUrl);

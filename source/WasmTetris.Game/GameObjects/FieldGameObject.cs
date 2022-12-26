@@ -17,7 +17,7 @@ public class FieldGameObject : GameObject
     private int _pieceWidth;
     private int _pieceHeight;
 
-    private PieceMapData[,] _fieldMap = new PieceMapData[0,0];
+    private PieceMapData[,] _fieldMap = new PieceMapData[0, 0];
 
     internal void SetFieldSetup(int fieldPositionX, int fieldPositionY, int fieldLinesX, int fieldLinesY, int pieceWidth, int pieceHeight)
     {
@@ -31,20 +31,41 @@ public class FieldGameObject : GameObject
         _fieldWidth = _fieldLinesX * _pieceWidth;
         _fieldHeight = _fieldLinesY * _pieceHeight;
 
-        _fieldMap = new PieceMapData[_fieldLinesY, _fieldLinesX];
-
-
-        _fieldMap[12, 5] = new PieceMapData("#BB2212");
+        if (_fieldMap.Length == 0)
+        {
+            _fieldMap = new PieceMapData[_fieldLinesY, _fieldLinesX];
+            //_fieldMap[12, 5] = new PieceMapData("#BB2212");
+        }
     }
 
     public bool IsFieldPositionEmpty(int positionX, int positionY)
     {
-        if (positionX < 0 | positionY < 0 | positionX >= _fieldLinesX | positionY >= _fieldLinesY)
+        if (positionX < 0 | positionY < 0 | positionX >= _fieldLinesX)
         {
             return true;
         }
 
+        if (positionY >= _fieldLinesY)
+        {
+            return false;
+        }
+
         return _fieldMap[positionY, positionX] == null;
+    }
+
+    public void SetFieldData(int positionIndexX, int poisitionIndexY, IEnumerable<Point> pieces, string color)
+    {
+        //Console.WriteLine($"PosI_X: {positionIndexX}, PosI_Y: {poisitionIndexY}, Color: {color}");
+        foreach (var currentPiece in pieces)
+        {
+            var pieceIndexX = positionIndexX + currentPiece.X;
+            var pieceIndexY = poisitionIndexY + currentPiece.Y;
+            if (pieceIndexX >= 0 && pieceIndexY >= 0)
+            {
+                //Console.WriteLine($"PosI_X: {positionIndexX + currentPiece.X}, PosI_Y: {poisitionIndexY + currentPiece.Y}, Color: {color}");
+                _fieldMap[poisitionIndexY + currentPiece.Y, positionIndexX + currentPiece.X] = new PieceMapData(color);
+            }
+        }
     }
 
     public override void Render(IRenderEngine renderEngine)
@@ -65,7 +86,7 @@ public class FieldGameObject : GameObject
         {
             for (int x = 0; x < _fieldLinesX; x++)
             {
-                if (_fieldMap[y,x] != null)
+                if (_fieldMap[y, x] != null)
                 {
                     renderEngine.AddDrawRectWithBorderToRender(_fieldMap[y, x].color, _fieldPositionX + (x * _pieceWidth), _fieldPositionY + (y * _pieceHeight), _pieceWidth, _pieceHeight);
                 }
