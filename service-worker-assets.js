@@ -177,11 +177,11 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-ZhvSpr43FwXSOrW7jofIyJmfFdno49KNmAmPUJpMRLE=",
+      "hash": "sha256-2mx2AVjnjItpVRGzC6J6aO7JVJH5VIg74fJLcE1WuGE=",
       "url": "js\/game.js"
     },
     {
-      "hash": "sha256-ZwxGRapoAekbvUzuQqk64JDKyLbCmJ5N5HMi3idxuOA=",
+      "hash": "sha256-DFC6igh4Y1hnM88CKnNAMOnn+ZzPZtwqwrcAjTRmETA=",
       "url": "js\/game.js.map"
     },
     {
@@ -189,5 +189,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "AjJ3kxlT"
+  "version": "J1VwxQOr"
 };
