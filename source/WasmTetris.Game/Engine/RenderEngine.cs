@@ -15,6 +15,8 @@ public class RenderEngine : IRenderEngine
 
     public event EventHandler<Size>? OnWindowSizeChanged;
 
+    private bool[] _keyDownCache = new bool[200];
+
     public RenderEngine(IJSRuntime jsRuntime)
     {
         _jsRuntime = jsRuntime ?? throw new ArgumentNullException(nameof(jsRuntime));
@@ -28,6 +30,8 @@ public class RenderEngine : IRenderEngine
         await _jsReference.InvokeVoidAsync("loadImages", _imageAssetsPreloadUrls);
         await _jsReference.InvokeVoidAsync("startEngine");
     }
+
+    public bool IsKeyDown(int keyCode) => _keyDownCache[keyCode];
 
     public void AddGameObject(GameObject gameObject) => _activeGameObjects.Add(gameObject);
     public void RemoveGameObject(GameObject gameObject)
@@ -140,5 +144,20 @@ public class RenderEngine : IRenderEngine
 
         await _jsReference!.InvokeVoidAsync("drawObjects", _nextRenderObjectStack);
         _nextRenderObjectStack.Clear();
+    }
+
+    [JSInvokable]
+    public void SendKeyUpdate(string eventType, int keyCode)
+    {
+        switch(eventType)
+        {
+            case "keydown":
+                _keyDownCache[keyCode] = true;
+                return;
+
+            case "keyup":
+                _keyDownCache[keyCode] = false;
+                return;
+        }
     }
 }

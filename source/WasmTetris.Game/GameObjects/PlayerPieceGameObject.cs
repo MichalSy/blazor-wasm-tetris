@@ -30,7 +30,7 @@ public class PlayerPieceGameObject : GameObject
     private int _nextRotateDelay = _random.Next(200, 600);
 
 
-    private int _posXIndex = 8;
+    private int _posXIndex = 4;
     private readonly FieldGameObject _fieldGameObject;
 
     private readonly List<Point> _checkMapFields = new();
@@ -52,7 +52,7 @@ public class PlayerPieceGameObject : GameObject
         _pieceWidth = pieceWidth;
         _pieceHeight = pieceHeight;
 
-        _posXIndex = _random.Next(0, _fieldLinesX);
+        //_posXIndex = _random.Next(0, _fieldLinesX);
     }
 
     private void RotateRight()
@@ -83,6 +83,15 @@ public class PlayerPieceGameObject : GameObject
     {
         _checkMapFields.Clear();
 
+        if (renderEngine.IsKeyDown(37))
+        {
+            _posXIndex -= 1;
+        }
+        if (renderEngine.IsKeyDown(39))
+        {
+            _posXIndex += 1;
+        }
+
         // check left and right bounds
         int xdiff = _posXIndex + _currentPiece.Min(p => p.X);
         if (xdiff < 0)
@@ -96,63 +105,73 @@ public class PlayerPieceGameObject : GameObject
         }
         _piecePositionX = _posXIndex * _pieceWidth;
 
-
-        // check falling position
-        var newPosY = _piecePositionY + (int)Math.Ceiling(5 * time);
-        var newPosYIndex = (int)Math.Ceiling((newPosY + 5 + _pieceHeight - _fieldPositionY) / (float)_pieceHeight) + 2;
-
-
-        var allChecksTrue = true;
-        foreach (var piece in _currentPiece)
-        {
-            var checkIndexX = _posXIndex + piece.X;
-            var checkIndexY = newPosYIndex + piece.Y;
-            if (!_fieldGameObject.IsFieldPositionEmpty(checkIndexX, checkIndexY))
-            {
-                allChecksTrue = false;
-                break;
-            }
-            _checkMapFields.Add(new Point(_posXIndex + piece.X, newPosYIndex + piece.Y));
-        }
-
-
-        //if (_lastRotate.AddMilliseconds(_nextRotateDelay) < DateTime.UtcNow)
-        //{
-        //    RotateRight();
-        //    _lastRotate = DateTime.UtcNow;
-        //    _nextRotateDelay = _random.Next(200, 600);
-        //}
-
-
-        if (allChecksTrue)
-        {
-            _piecePositionY = newPosY;
-        }
+        var newPosY = _piecePositionY;
 
         
 
-        if (_lifeSince.AddSeconds(6) < DateTime.UtcNow)
+        if (renderEngine.IsKeyDown(40))
         {
-            renderEngine.RemoveGameObject(this);
+            newPosY = _piecePositionY + (int)Math.Ceiling(1 * time);
         }
+        if (renderEngine.IsKeyDown(38))
+        {
+            newPosY = _piecePositionY - (int)Math.Ceiling(1 * time);
+        }
+
+        newPosY = _piecePositionY + (int)Math.Ceiling(20 * time);
+
+        if (newPosY != _piecePositionY)
+        {
+            // check falling position
+            var newPosYIndex = (int)Math.Ceiling((newPosY) / (float)_pieceHeight);
+            //Console.WriteLine($"FY: {_fieldPositionY}, PP_Y:{_piecePositionY}, NP_Y: {newPosY}, NP_IY: {newPosYIndex}, PH: {_pieceHeight}");
+
+            var allChecksTrue = true;
+            foreach (var piece in _currentPiece)
+            {
+                var checkIndexX = _posXIndex + piece.X;
+                var checkIndexY = newPosYIndex + piece.Y;
+                if (!_fieldGameObject.IsFieldPositionEmpty(checkIndexX, checkIndexY))
+                {
+                    allChecksTrue = false;
+                    renderEngine.RemoveGameObject(this);
+                    break;
+                }
+                _checkMapFields.Add(new Point(_posXIndex + piece.X, newPosYIndex + piece.Y));
+            }
+
+            if (allChecksTrue)
+            {
+                _piecePositionY = newPosY;
+            }
+        }
+
+
+
+        //if (_lifeSince.AddSeconds(10) < DateTime.UtcNow)
+        //{
+        //    renderEngine.RemoveGameObject(this);
+        //}
     }
 
     public override void Render(IRenderEngine renderEngine)
     {
-        foreach (var checkField in _checkMapFields)
-        {
-            //Console.WriteLine(checkField);
-            var posX = _fieldPositionX + (checkField.X * _pieceWidth);
-            var posY = _fieldPositionY + (checkField.Y * _pieceWidth);
-            renderEngine.AddDrawStrokeRectToRender(posX, posY, _pieceWidth, _pieceHeight, "#1133FF", 1, 0.5f);
-        }
-
         foreach (var piece in _currentPiece)
         {
             var posX = _fieldPositionX + _piecePositionX + (piece.X * _pieceWidth);
             var posY = _fieldPositionY + _piecePositionY + (piece.Y * _pieceWidth);
             renderEngine.AddDrawRectWithBorderToRender(_color, posX, posY, _pieceWidth, _pieceHeight);
         }
+
+        foreach (var checkField in _checkMapFields)
+        {
+            //Console.WriteLine(checkField);
+            var posX = _fieldPositionX + (checkField.X * _pieceWidth);
+            var posY = _fieldPositionY + (checkField.Y * _pieceWidth);
+            renderEngine.AddDrawStrokeRectToRender(posX, posY, _pieceWidth, _pieceHeight, "#FF3322", 2, 0.5f);
+        }
+
+        
     }
 
 

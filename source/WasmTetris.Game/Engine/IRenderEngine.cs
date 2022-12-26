@@ -16,4 +16,5 @@ public interface IRenderEngine
     void SetCanvasSizeAsync(Size newSize);
     void AddDrawStrokeRectToRender(int posX, int posY, int width, int height, string htmlColor, int lineWidth = 1, float alpha = 1);
     void AddDrawLineToRender(int posX, int posY, int posEndX, int posEndY, string htmlColor, int lineWidth = 1, float alpha = 1);
+    bool IsKeyDown(int keyCode);
 }

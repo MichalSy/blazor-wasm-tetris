@@ -64,6 +64,8 @@ var WasmTetris;
             this.canvasElement = document.querySelector("canvas");
             this.renderContext = this.canvasElement.getContext("2d");
             window.addEventListener("resize", () => this.detectWindowSize());
+            window.addEventListener("keydown", (event) => this.renderEngine.invokeMethodAsync("SendKeyUpdate", event.type, event.keyCode));
+            window.addEventListener("keyup", (event) => this.renderEngine.invokeMethodAsync("SendKeyUpdate", event.type, event.keyCode));
         }
         detectWindowSize() {
             this.renderEngine.invokeMethodAsync("SetWindowSize", window.innerWidth, window.innerHeight);

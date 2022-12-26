@@ -34,7 +34,7 @@ public class FieldGameObject : GameObject
         _fieldMap = new PieceMapData[_fieldLinesY, _fieldLinesX];
 
 
-        _fieldMap[10, 4] = new PieceMapData("#BB2212");
+        _fieldMap[12, 5] = new PieceMapData("#BB2212");
     }
 
     public bool IsFieldPositionEmpty(int positionX, int positionY)

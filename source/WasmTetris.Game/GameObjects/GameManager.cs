@@ -27,7 +27,8 @@ public class GameManager : GameObject
     private DateTime _lastInsert = DateTime.MinValue;
 
     private FieldGameObject _fieldGO = new();
-    
+    private PlayerPieceGameObject? _currentPlayerPiece;
+
 
     public GameManager(IRenderEngine renderEngine)
     {
@@ -62,16 +63,23 @@ public class GameManager : GameObject
     {
         _fieldGO.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _fieldLinesY, _pieceWidth, _pieceWidth);
 
-        if (nextCheckTime == 0 || _lastInsert.AddMilliseconds(nextCheckTime) < DateTime.UtcNow)
+        if (_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed)
         {
-            nextCheckTime = _random.Next(2000, 3000);
-
-            var nn = new PlayerPieceGameObject(_fieldGO);
-            nn.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
-            renderEngine.AddGameObject(nn);
-
-            _lastInsert = DateTime.UtcNow;
+            _currentPlayerPiece = new PlayerPieceGameObject(_fieldGO);
+            _currentPlayerPiece.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
+            renderEngine.AddGameObject(_currentPlayerPiece);
         }
+
+        //if (nextCheckTime == 0 || _lastInsert.AddMilliseconds(nextCheckTime) < DateTime.UtcNow)
+        //{
+        //    nextCheckTime = _random.Next(5000, 6000);
+
+        //    var nn = new PlayerPieceGameObject(_fieldGO);
+        //    nn.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
+        //    renderEngine.AddGameObject(nn);
+
+        //    _lastInsert = DateTime.UtcNow;
+        //}
     }
 
     public override void Render(IRenderEngine renderEngine)
