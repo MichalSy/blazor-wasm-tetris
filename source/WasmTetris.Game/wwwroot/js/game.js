@@ -66,8 +66,8 @@ var WasmTetris;
             window.addEventListener("resize", () => this.detectWindowSize());
             window.addEventListener("keydown", (event) => this.renderEngine.invokeMethodAsync("SendKeyUpdate", event.type, event.keyCode));
             window.addEventListener("keyup", (event) => this.renderEngine.invokeMethodAsync("SendKeyUpdate", event.type, event.keyCode));
-            window.addEventListener("touchstart", (event) => this.renderEngine.invokeMethodAsync("SendTouchUpdate", event.type, event.changedTouches[0].clientX, event.changedTouches[0].clientY));
-            window.addEventListener("touchend", (event) => this.renderEngine.invokeMethodAsync("SendTouchUpdate", event.type, event.changedTouches[0].clientX, event.changedTouches[0].clientY));
+            window.addEventListener("touchstart", (event) => this.renderEngine.invokeMethodAsync("SendTouchUpdate", event.type, Math.round(event.changedTouches[0].clientX), Math.round(event.changedTouches[0].clientY)));
+            window.addEventListener("touchend", (event) => this.renderEngine.invokeMethodAsync("SendTouchUpdate", event.type, Math.round(event.changedTouches[0].clientX), Math.round(event.changedTouches[0].clientY)));
         }
         detectWindowSize() {
             this.renderEngine.invokeMethodAsync("SetWindowSize", window.innerWidth, window.innerHeight);
