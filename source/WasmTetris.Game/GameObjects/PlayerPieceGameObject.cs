@@ -19,7 +19,7 @@ public class PlayerPieceGameObject : GameObject
     private int _piecePositionX;
     private int _piecePositionY;
 
-    private string _color = string.Format("#{0:X6}", _random.Next(0x1000000));
+    private string _color = ColorPalette.GetRandomColor();
 
     private IEnumerable<Point> _currentPiece = PieceTypes.AllTypes.First();
 
@@ -134,9 +134,9 @@ public class PlayerPieceGameObject : GameObject
         {
             newPosY = _piecePositionY + (int)Math.Ceiling(10 * time);
         }
-        
 
-        
+
+
 
         if (newPosY != _piecePositionY)
         {
@@ -179,7 +179,8 @@ public class PlayerPieceGameObject : GameObject
         {
             var posX = _fieldPositionX + _piecePositionX + (piece.X * _pieceWidth);
             var posY = _fieldPositionY + _piecePositionY + (piece.Y * _pieceWidth);
-            renderEngine.AddDrawRectWithBorderToRender(_color, posX, posY, _pieceWidth, _pieceHeight);
+            renderEngine.AddDrawStrokeRectToRender(posX + 1, posY + 1, _pieceWidth - 2, _pieceHeight - 2, _color, 1, 1, 30);
+            renderEngine.AddDrawFillRectToRender(posX + 1, posY + 1, _pieceWidth - 2, _pieceHeight - 2, _color, 0.3f, 15);
         }
 
         if (_showCollisionLines)
@@ -189,7 +190,7 @@ public class PlayerPieceGameObject : GameObject
                 var posX = _fieldPositionX + (checkField.X * _pieceWidth);
                 var posY = _fieldPositionY + (checkField.Y * _pieceWidth);
                 renderEngine.AddDrawStrokeRectToRender(posX, posY, _pieceWidth, _pieceHeight, "#FF3322", 2, 0.5f);
-            } 
+            }
         }
     }
 

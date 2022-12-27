@@ -15,7 +15,8 @@ public interface IRenderEngine
     void RemoveGameObject(GameObject gameObject);
     void StartRenderEngineAsync();
     void SetCanvasSizeAsync(Size newSize);
-    void AddDrawStrokeRectToRender(int posX, int posY, int width, int height, string htmlColor, int lineWidth = 1, float alpha = 1);
+    void AddDrawStrokeRectToRender(int posX, int posY, int width, int height, string htmlColor, int lineWidth = 1, float alpha = 1, float shadowBlur = 0);
     void AddDrawLineToRender(int posX, int posY, int posEndX, int posEndY, string htmlColor, int lineWidth = 1, float alpha = 1);
     bool IsKeyDown(int keyCode);
+    void AddDrawFillRectToRender(int posX, int posY, int width, int height, string htmlColor, float alpha = 1, float shadowBlur = 0);
 }

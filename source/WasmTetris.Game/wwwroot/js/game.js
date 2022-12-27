@@ -94,39 +94,51 @@ var WasmTetris;
                 width: command.width,
                 height: command.height
             });
-            this.drawStrokeRect({
-                data: { lineWidth: 2, alpha: 0.8 },
-                positionX: command.positionX,
-                positionY: command.positionY,
-                width: command.width,
-                height: command.height
-            });
+            //this.drawStrokeRect({
+            //    data: { color: data.color, lineWidth: 6, alpha: 0.8 },
+            //    positionX: command.positionX,
+            //    positionY: command.positionY,
+            //    width: command.width,
+            //    height: command.height
+            //});
         }
         drawFillRect(command) {
             let data = command.data;
+            //this.renderContext.globalCompositeOperation = "lighter";
+            this.renderContext.shadowColor = data.color ?? "#000";
+            this.renderContext.shadowBlur = data.shadowBlur ?? 0;
             this.renderContext.fillStyle = data.color ?? "#000";
             this.renderContext.globalAlpha = data.alpha ?? 1;
             this.renderContext.fillRect(command.positionX, command.positionY, command.width, command.height);
             this.renderContext.globalAlpha = 1;
+            this.renderContext.shadowBlur = 0;
+            this.renderContext.globalCompositeOperation = "source-over";
         }
         drawStrokeRect(command) {
             let data = command.data;
+            //this.renderContext.globalCompositeOperation = "lighter";
+            this.renderContext.shadowColor = data.color ?? "#000";
+            this.renderContext.shadowBlur = data.shadowBlur ?? 0;
             this.renderContext.strokeStyle = data.color ?? "#000";
             this.renderContext.lineWidth = data.lineWidth ?? 1;
             this.renderContext.globalAlpha = data.alpha ?? 1;
             this.renderContext.strokeRect(command.positionX, command.positionY, command.width, command.height);
             this.renderContext.globalAlpha = 1;
+            this.renderContext.shadowBlur = 0;
+            this.renderContext.globalCompositeOperation = "source-over";
         }
         drawLine(command) {
             let data = command.data;
             this.renderContext.strokeStyle = data.color ?? "#000";
             this.renderContext.lineWidth = data.lineWidth ?? 1;
             this.renderContext.globalAlpha = data.alpha ?? 1;
+            this.renderContext.shadowBlur = data.shadowBlur ?? 0;
             this.renderContext.beginPath();
             this.renderContext.moveTo(command.positionX, command.positionY);
             this.renderContext.lineTo(data.positionEndX ?? command.positionX + 10, data.positionEndY ?? command.positionY + 10);
             this.renderContext.stroke();
             this.renderContext.globalAlpha = 1;
+            this.renderContext.shadowBlur = 0;
         }
         drawImages(images) {
             for (let i of images) {
@@ -165,7 +177,7 @@ var WasmTetris;
             this.showFPS();
         }
         showFPS() {
-            this.renderContext.fillStyle = "Black";
+            this.renderContext.fillStyle = "White";
             this.renderContext.font = "normal 16pt Arial";
             this.renderContext.fillText(this.fpsCount + " fps", 10, 26);
         }

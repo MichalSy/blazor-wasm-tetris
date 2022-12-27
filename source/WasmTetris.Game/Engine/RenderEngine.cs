@@ -70,7 +70,7 @@ public class RenderEngine : IRenderEngine
         });
     }
 
-    public void AddDrawStrokeRectToRender(int posX, int posY, int width, int height, string htmlColor, int lineWidth = 1, float alpha = 1)
+    public void AddDrawStrokeRectToRender(int posX, int posY, int width, int height, string htmlColor, int lineWidth = 1, float alpha = 1, float shadowBlur = 0)
     {
         _nextRenderObjectStack.Add(new RenderObject<object>
         {
@@ -83,7 +83,26 @@ public class RenderEngine : IRenderEngine
             {
                 Color = htmlColor,
                 LineWidth = lineWidth,
-                Alpha = alpha
+                Alpha = alpha,
+                ShadowBlur = shadowBlur
+            }
+        });
+    }
+
+    public void AddDrawFillRectToRender(int posX, int posY, int width, int height, string htmlColor, float alpha = 1, float shadowBlur = 0)
+    {
+        _nextRenderObjectStack.Add(new RenderObject<object>
+        {
+            Type = "FillRect",
+            PositionX = posX,
+            PositionY = posY,
+            Width = width,
+            Height = height,
+            Data = new
+            {
+                Color = htmlColor,
+                Alpha = alpha,
+                ShadowBlur = shadowBlur
             }
         });
     }
