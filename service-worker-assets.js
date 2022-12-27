@@ -9,7 +9,7 @@
       "url": "_framework\/dotnet.timezones.blat"
     },
     {
-      "hash": "sha256-DyPzLKWVK0YVYKSunL0NWuvUmms5riblP52a2eUXkAc=",
+      "hash": "sha256-c9szeQA1kfA1cHyzQCReiuuU7aMT1m7uHPmnVnawBrs=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -109,7 +109,7 @@
       "url": "_framework\/System.ObjectModel.dll"
     },
     {
-      "hash": "sha256-QblC53NT4U1aLdxzqcTc7zByFm8ojh5zUbaT3On4Mb8=",
+      "hash": "sha256-LiTMlY2f+d+VMAZCH1+3irBBK4pJ6NitPmfTyMtnc7w=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
@@ -137,7 +137,7 @@
       "url": "_framework\/System.Threading.dll"
     },
     {
-      "hash": "sha256-VNE9rH30j+25OyG7ZRKrOmoKiIUmRdH3XkAHdYYcWaw=",
+      "hash": "sha256-dnywVXxBnijrAOdC24FLCgx48VWVVcoC8\/ql28t1jc0=",
       "url": "_framework\/WasmTetris.Game.dll"
     },
     {
@@ -145,15 +145,15 @@
       "url": "_framework\/dotnet.7.0.1.4vfxaiujz8.js"
     },
     {
-      "hash": "sha256-EB+2AFlTX2Gy7b3ukQRa7oO6u5yDsxkqKg6L3RZqID8=",
+      "hash": "sha256-52+JsHtWFIruPqAhi\/Yxss9ioxd0J3WtzXtuq9xHKZA=",
       "url": "_framework\/dotnet.wasm"
     },
     {
-      "hash": "sha256-FgzTdeoQRh1x+0DOVrBfdw6pmIPCwnHgI71o3b9ZEjw=",
+      "hash": "sha256-r\/rb4DW8x3958awGiEKw6cwsA3IgPlN\/GLK0KqQqme4=",
       "url": "WasmTetris.Game.styles.css"
     },
     {
-      "hash": "sha256-E0zuGGa1UfyHyvffXBP+V\/vPhwt3a2y2VtDk8eWc\/fI=",
+      "hash": "sha256-crsvv+DlNgtJXXmjqj2+90f0tcnNHPsjPnOUF0KuTGY=",
       "url": "css\/app.css"
     },
     {
@@ -177,11 +177,11 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-2mx2AVjnjItpVRGzC6J6aO7JVJH5VIg74fJLcE1WuGE=",
+      "hash": "sha256-hSku+kv2Ct5OxQQswrXO\/WTv1uvhyjTHKatpenpOMPc=",
       "url": "js\/game.js"
     },
     {
-      "hash": "sha256-DFC6igh4Y1hnM88CKnNAMOnn+ZzPZtwqwrcAjTRmETA=",
+      "hash": "sha256-McCaEDI7S9vfJlCqbtEjgUhK\/KDP+noItzRdyHnuZk8=",
       "url": "js\/game.js.map"
     },
     {
@@ -189,5 +189,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "J1VwxQOr"
+  "version": "RZ\/tdRMg"
 };
