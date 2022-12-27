@@ -7,6 +7,7 @@ public interface IRenderEngine
 {
     event EventHandler<Size>? OnWindowSizeChanged;
     event EventHandler<Point>? OnTouchStarted;
+    event EventHandler<int>? OnKeyDown;
 
     void AddGameObject(GameObject gameObject);
     void AddImageAsset(string imageAssetUrl);

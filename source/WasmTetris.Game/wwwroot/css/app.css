@@ -19,6 +19,7 @@ body {
     overscroll-behavior: contain;
     height: 100%;
     background-color: #262626;
+    color: white;
 }
 
 #app {

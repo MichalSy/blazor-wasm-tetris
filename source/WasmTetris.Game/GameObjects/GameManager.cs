@@ -15,7 +15,7 @@ public class GameManager : GameObject
     private int _pieceWidth = 16;
     private int _fieldTopMargin = 120;
 
-    private int _fieldLinesX = 10;
+    private int _fieldLinesX = 11;
     private int _fieldLinesY = 25;
     private int _fieldWidth = 300;
     private int _fieldHeight = 500;
@@ -35,10 +35,10 @@ public class GameManager : GameObject
         _renderEngine = renderEngine ?? throw new ArgumentNullException(nameof(renderEngine));
         _renderEngine.OnWindowSizeChanged += RenderEngine_OnWindowSizeChanged;
         _renderEngine.OnTouchStarted += RenderEngine_OnTouchStarted;
+        _renderEngine.OnKeyDown += RenderEngine_OnKeyDown;
     }
 
-
-
+    
 
     // Recalculate game size
     private void RenderEngine_OnWindowSizeChanged(object? sender, Size windowSize)
@@ -73,6 +73,14 @@ public class GameManager : GameObject
         else
         {
             _currentPlayerPiece?.MoveRight();
+        }
+    }
+
+    private void RenderEngine_OnKeyDown(object? sender, int keyCode)
+    {
+        if (keyCode == 38)
+        {
+            _currentPlayerPiece?.RotateRight();
         }
     }
 

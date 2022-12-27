@@ -15,6 +15,7 @@ public class RenderEngine : IRenderEngine
 
     public event EventHandler<Size>? OnWindowSizeChanged;
     public event EventHandler<Point>? OnTouchStarted;
+    public event EventHandler<int>? OnKeyDown;
 
     private bool[] _keyDownCache = new bool[200];
 
@@ -173,6 +174,7 @@ public class RenderEngine : IRenderEngine
         {
             case "keydown":
                 _keyDownCache[keyCode] = true;
+                OnKeyDown?.Invoke(this, keyCode);
                 return;
 
             case "keyup":

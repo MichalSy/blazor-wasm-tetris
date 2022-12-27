@@ -15,7 +15,7 @@ public static class ColorPalette
         "#45edcf",
         "#49ff9e",
         "#48ff5e",
-        "#c1e92e",
+        "#fff44f",
         "#f7585a",
         "#f7009d",
         "#f700d2"

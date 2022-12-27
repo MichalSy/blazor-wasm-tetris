@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.IO.Pipelines;
-using System.Net.NetworkInformation;
+﻿using System.Drawing;
 using WasmTetris.Game.BaseGameObject;
 using WasmTetris.Game.Engine;
 
@@ -23,14 +20,7 @@ public class PlayerPieceGameObject : GameObject
 
     private IEnumerable<Point> _currentPiece = PieceTypes.AllTypes.First();
 
-    private DateTime _lastRotate = DateTime.UtcNow;
-
-    private DateTime _lifeSince = DateTime.UtcNow;
-
-    private int _nextRotateDelay = _random.Next(200, 600);
-
-
-    private int _posXIndex = 4;
+    private int _posXIndex = 5;
     private readonly FieldGameObject _fieldGameObject;
 
     private readonly List<Point> _checkMapFields = new();
@@ -40,12 +30,14 @@ public class PlayerPieceGameObject : GameObject
 
     private bool _showCollisionLines = false;
 
+    private float _movingSpeed = 15;
+    private float _movingMultiplyer = 1;
+
     public PlayerPieceGameObject(FieldGameObject fieldGameObject)
     {
         var allPieces = PieceTypes.AllTypes.ToArray();
         _currentPiece = allPieces[_random.Next(0, allPieces.Length - 1)];
 
-        RotateRight();
         _fieldGameObject = fieldGameObject ?? throw new ArgumentNullException(nameof(fieldGameObject));
     }
 
@@ -57,10 +49,16 @@ public class PlayerPieceGameObject : GameObject
         _pieceWidth = pieceWidth;
         _pieceHeight = pieceHeight;
 
-        //_posXIndex = _random.Next(0, _fieldLinesX);
+        _movingMultiplyer = _pieceWidth / 32f;
     }
 
-    private void RotateRight()
+    private void DestroyMyself(IRenderEngine renderEngine)
+    {
+        _fieldGameObject.SetFieldData(_posXIndex, (int)Math.Ceiling(_piecePositionY / (float)_pieceHeight), _currentPiece, _color);
+        renderEngine.RemoveGameObject(this);
+    }
+
+    public void RotateRight()
     {
         var oldPositions = _currentPiece.ToArray();
         List<Point> newPos = new();
@@ -124,15 +122,11 @@ public class PlayerPieceGameObject : GameObject
         var newPosY = _piecePositionY;
 
 
-        newPosY = _piecePositionY + (int)Math.Ceiling(15 * time);
+        newPosY = _piecePositionY + (int)Math.Ceiling(_movingSpeed * _movingMultiplyer * time);
 
-        if (renderEngine.IsKeyDown(38))
-        {
-            newPosY = _piecePositionY + (int)Math.Ceiling(10 * time);
-        }
         if (renderEngine.IsKeyDown(40))
         {
-            newPosY = _piecePositionY + (int)Math.Ceiling(10 * time);
+            newPosY = _piecePositionY + (int)Math.Ceiling((_movingSpeed * 3) * _movingMultiplyer * time);
         }
 
 
@@ -152,8 +146,7 @@ public class PlayerPieceGameObject : GameObject
                 if (!_fieldGameObject.IsFieldPositionEmpty(checkIndexX, checkIndexY))
                 {
                     allChecksTrue = false;
-                    _fieldGameObject.SetFieldData(_posXIndex, (int)Math.Ceiling(_piecePositionY / (float)_pieceHeight), _currentPiece, _color);
-                    renderEngine.RemoveGameObject(this);
+                    DestroyMyself(renderEngine);
                     break;
                 }
                 _checkMapFields.Add(new Point(_posXIndex + piece.X, newPosYIndex + piece.Y));
@@ -164,13 +157,6 @@ public class PlayerPieceGameObject : GameObject
                 _piecePositionY = newPosY;
             }
         }
-
-
-
-        //if (_lifeSince.AddSeconds(10) < DateTime.UtcNow)
-        //{
-        //    renderEngine.RemoveGameObject(this);
-        //}
     }
 
     public override void Render(IRenderEngine renderEngine)
