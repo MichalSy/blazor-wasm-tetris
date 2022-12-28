@@ -25,7 +25,7 @@ public class PlayerPieceGameObject : GameObject
 
     private readonly List<Point> _checkMapFields = new();
 
-    private readonly bool _showCollisionLines = true;
+    private bool _showCollisionLines = false;
 
     private readonly float _movingSpeed = 10;
     private float _movingMultiplyer = 1;
@@ -87,7 +87,9 @@ public class PlayerPieceGameObject : GameObject
 
     public override void Update(IRenderEngine renderEngine, float time)
     {
-        if (!renderEngine.IsKeyDown(32))
+        var isDebugMode = _showCollisionLines = renderEngine.IsKeyDown(32);
+
+        if (!isDebugMode)
         {
             _checkMapFields.Clear();
         }
@@ -107,14 +109,14 @@ public class PlayerPieceGameObject : GameObject
 
         var newPosY = _piecePositionY;
 
-        if (!renderEngine.IsKeyDown(32)) // space
+        if (!isDebugMode) // space
         {
             newPosY = _piecePositionY + (int)Math.Ceiling(_movingSpeed * _movingMultiplyer * time);
         }
 
         if (renderEngine.IsKeyDown(40)) // arrow down
         {
-            if (renderEngine.IsKeyDown(32)) // space
+            if (isDebugMode) // space
             {
                 newPosY = _piecePositionY + (int)Math.Ceiling((_movingSpeed / 3) * _movingMultiplyer * time);
             }
@@ -124,35 +126,32 @@ public class PlayerPieceGameObject : GameObject
             }
         }
 
-
+        // Next position Y index
         var newPosYIndex = (int)Math.Ceiling(newPosY / (float)_pieceHeight);
+
+        // If right movement is needed, it is first checked if this is possible at all
         if (_needMoveRight
-                && IsPieceMovementPossible(_posXIndex + 1, newPosYIndex)
-                && IsPieceMovementPossible(_posXIndex + 1, (int)Math.Floor(_piecePositionY / (float)_pieceHeight)))
+                && IsPieceMovementPossible(_posXIndex + 1, newPosYIndex, true)
+                && IsPieceMovementPossible(_posXIndex + 1, (int)Math.Floor(_piecePositionY / (float)_pieceHeight), true))
         {
             _posXIndex += 1;
 
         }
         _needMoveRight = false;
 
+        // If left movement is needed, it is first checked if this is possible at all
         if (_needMoveLeft
-            && IsPieceMovementPossible(_posXIndex - 1, newPosYIndex)
-            && IsPieceMovementPossible(_posXIndex - 1, (int)Math.Floor(_piecePositionY / (float)_pieceHeight)))
+            && IsPieceMovementPossible(_posXIndex - 1, newPosYIndex, true)
+            && IsPieceMovementPossible(_posXIndex - 1, (int)Math.Floor(_piecePositionY / (float)_pieceHeight), true))
         {
             _posXIndex -= 1;
 
         }
         _needMoveLeft = false;
 
-
         if (newPosY != _piecePositionY)
         {
             // check falling position
-
-
-
-            //Console.WriteLine($"FY: {_fieldPositionY}, PP_Y:{_piecePositionY}, NP_Y: {newPosY}, NP_IY: {newPosYIndex}, PH: {_pieceHeight}");
-
             if (!IsPieceMovementPossible(_posXIndex, newPosYIndex))
             {
                 DestroyMyself(renderEngine);

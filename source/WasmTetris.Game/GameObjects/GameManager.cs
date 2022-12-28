@@ -25,6 +25,8 @@ public class GameManager : GameObject
     private readonly FieldGameObject _fieldGO = new();
     private PlayerPieceGameObject? _currentPlayerPiece;
 
+    private bool _isGameRunning = false;
+
 
     public GameManager(IRenderEngine renderEngine)
     {
@@ -74,32 +76,42 @@ public class GameManager : GameObject
 
     private void RenderEngine_OnKeyDown(object? sender, int keyCode)
     {
-        if (_currentPlayerPiece is null)
-            return;
-
         switch (keyCode)
         {
+            case 27: // esc
+                _isGameRunning = false;
+                if (_currentPlayerPiece is not null)
+                {
+                    _renderEngine.RemoveGameObject(_currentPlayerPiece);
+                }
+                return;
+
+            case 32: // space
+                Console.WriteLine("GO");
+                _isGameRunning = true;
+                return;
+            
             case 17: // crtl
-                _currentPlayerPiece.RotateLeft();
+                _currentPlayerPiece?.RotateLeft();
                 return;
 
             case 37: // Arrow Left
-                _currentPlayerPiece.MoveLeft();
+                _currentPlayerPiece?.MoveLeft();
                 return;
 
             case 38: // Arrow Up
-                _currentPlayerPiece.RotateRight();
+                _currentPlayerPiece?.RotateRight();
                 return;
 
             case 39: // Arrow Right
-                _currentPlayerPiece.MoveRight();
+                _currentPlayerPiece?.MoveRight();
                 return;
         }
     }
 
     public override void Update(IRenderEngine renderEngine, float time)
     {
-        if (_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed)
+        if (_isGameRunning && (_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed))
         {
             _currentPlayerPiece = new PlayerPieceGameObject(_fieldGO);
             _currentPlayerPiece.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
