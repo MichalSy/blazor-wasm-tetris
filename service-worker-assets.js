@@ -9,7 +9,7 @@
       "url": "_framework\/dotnet.timezones.blat"
     },
     {
-      "hash": "sha256-irz1avhn2L3o1lt5GiniiA59yEpp6E9ILiSMipcZOCA=",
+      "hash": "sha256-Iw4wSfXUEMa4Al27gISbugNvH022ZFzBvK8k5rtkDZQ=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -137,7 +137,7 @@
       "url": "_framework\/System.Threading.dll"
     },
     {
-      "hash": "sha256-tVuCSnjjo4F+n7l6xiwgGJaEEjjqjwrffD5OQjCixWk=",
+      "hash": "sha256-kbFO1N5WeWLyvcWWTBNb+cKHM2CU5KjbuBFNTxOti2c=",
       "url": "_framework\/WasmTetris.Game.dll"
     },
     {
@@ -145,7 +145,7 @@
       "url": "_framework\/dotnet.7.0.1.4vfxaiujz8.js"
     },
     {
-      "hash": "sha256-x9ZXj+N69WOTR8\/pE7chx1k0sWbUbyBBbVT5mMCZGx0=",
+      "hash": "sha256-0bsn6+B8Gy\/BVwSgu8o\/Zc230VQIuyBb\/lI2lpsi5Jc=",
       "url": "_framework\/dotnet.wasm"
     },
     {
@@ -197,5 +197,5 @@
       "url": "sounds\/drop.mp3"
     }
   ],
-  "version": "9aN\/Nwse"
+  "version": "nrZ7VvwV"
 };
