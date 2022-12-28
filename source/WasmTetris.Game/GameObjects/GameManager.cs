@@ -79,6 +79,10 @@ public class GameManager : GameObject
 
         switch (keyCode)
         {
+            case 17: // crtl
+                _currentPlayerPiece.RotateLeft();
+                return;
+
             case 37: // Arrow Left
                 _currentPlayerPiece.MoveLeft();
                 return;

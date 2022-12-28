@@ -25,10 +25,13 @@ public class PlayerPieceGameObject : GameObject
 
     private readonly List<Point> _checkMapFields = new();
 
-    private readonly bool _showCollisionLines = false;
+    private readonly bool _showCollisionLines = true;
 
     private readonly float _movingSpeed = 10;
     private float _movingMultiplyer = 1;
+
+    private bool _needMoveRight;
+    private bool _needMoveLeft;
 
     public PlayerPieceGameObject(FieldGameObject fieldGameObject)
     {
@@ -64,7 +67,7 @@ public class PlayerPieceGameObject : GameObject
         _currentPiece = _currentPiece with { Blocks = _currentPiece.Blocks.Select(p => new Point(-p.Y, p.X)) };
     }
 
-    private void RotateLeft()
+    public void RotateLeft()
     {
         if (!_currentPiece.CanRotate)
             return;
@@ -72,12 +75,22 @@ public class PlayerPieceGameObject : GameObject
         _currentPiece = _currentPiece with { Blocks = _currentPiece.Blocks.Select(p => new Point(p.Y, -p.X)) };
     }
 
-    public void MoveLeft() => _posXIndex -= 1;
-    public void MoveRight() => _posXIndex += 1;
+    public void MoveLeft()
+    {
+        _needMoveLeft = true;
+    }
+
+    public void MoveRight()
+    {
+        _needMoveRight = true;
+    }
 
     public override void Update(IRenderEngine renderEngine, float time)
     {
-        _checkMapFields.Clear();
+        if (!renderEngine.IsKeyDown(32))
+        {
+            _checkMapFields.Clear();
+        }
 
         // check left and right bounds
         int xdiff = _posXIndex + _currentPiece.Blocks.Min(p => p.X);
@@ -94,39 +107,78 @@ public class PlayerPieceGameObject : GameObject
 
         var newPosY = _piecePositionY;
 
-
-        newPosY = _piecePositionY + (int)Math.Ceiling(_movingSpeed * _movingMultiplyer * time);
-
-        if (renderEngine.IsKeyDown(40))
+        if (!renderEngine.IsKeyDown(32)) // space
         {
-            newPosY = _piecePositionY + (int)Math.Ceiling((_movingSpeed * 3) * _movingMultiplyer * time);
+            newPosY = _piecePositionY + (int)Math.Ceiling(_movingSpeed * _movingMultiplyer * time);
         }
+
+        if (renderEngine.IsKeyDown(40)) // arrow down
+        {
+            if (renderEngine.IsKeyDown(32)) // space
+            {
+                newPosY = _piecePositionY + (int)Math.Ceiling((_movingSpeed / 3) * _movingMultiplyer * time);
+            }
+            else
+            {
+                newPosY = _piecePositionY + (int)Math.Ceiling((_movingSpeed * 3) * _movingMultiplyer * time);
+            }
+        }
+
+
+        var newPosYIndex = (int)Math.Ceiling(newPosY / (float)_pieceHeight);
+        if (_needMoveRight
+                && IsPieceMovementPossible(_posXIndex + 1, newPosYIndex)
+                && IsPieceMovementPossible(_posXIndex + 1, (int)Math.Floor(_piecePositionY / (float)_pieceHeight)))
+        {
+            _posXIndex += 1;
+
+        }
+        _needMoveRight = false;
+
+        if (_needMoveLeft
+            && IsPieceMovementPossible(_posXIndex - 1, newPosYIndex)
+            && IsPieceMovementPossible(_posXIndex - 1, (int)Math.Floor(_piecePositionY / (float)_pieceHeight)))
+        {
+            _posXIndex -= 1;
+
+        }
+        _needMoveLeft = false;
+
 
         if (newPosY != _piecePositionY)
         {
             // check falling position
-            var newPosYIndex = (int)Math.Ceiling(newPosY / (float)_pieceHeight);
+
+
+
             //Console.WriteLine($"FY: {_fieldPositionY}, PP_Y:{_piecePositionY}, NP_Y: {newPosY}, NP_IY: {newPosYIndex}, PH: {_pieceHeight}");
 
-            var allChecksTrue = true;
-            foreach (var piece in _currentPiece.Blocks)
+            if (!IsPieceMovementPossible(_posXIndex, newPosYIndex))
             {
-                var checkIndexX = _posXIndex + piece.X;
-                var checkIndexY = newPosYIndex + piece.Y;
-                if (!_fieldGameObject.IsFieldPositionEmpty(checkIndexX, checkIndexY))
-                {
-                    allChecksTrue = false;
-                    DestroyMyself(renderEngine);
-                    break;
-                }
-                _checkMapFields.Add(new Point(_posXIndex + piece.X, newPosYIndex + piece.Y));
+                DestroyMyself(renderEngine);
+                return;
             }
 
-            if (allChecksTrue)
+            _piecePositionY = newPosY;
+        }
+    }
+
+    private bool IsPieceMovementPossible(int posYIndex, int posXIndex, bool addDebugCheckFields = false)
+    {
+        foreach (var piece in _currentPiece.Blocks)
+        {
+            var checkIndexX = posYIndex + piece.X;
+            var checkIndexY = posXIndex + piece.Y;
+            if (!_fieldGameObject.IsFieldPositionEmpty(checkIndexX, checkIndexY))
             {
-                _piecePositionY = newPosY;
+                return false;
+            }
+            if (addDebugCheckFields)
+            {
+                _checkMapFields.Add(new Point(checkIndexX, checkIndexY));
             }
         }
+        return true;
     }
 
     public override void Render(IRenderEngine renderEngine)
@@ -145,7 +197,7 @@ public class PlayerPieceGameObject : GameObject
             {
                 var posX = _fieldPositionX + (checkField.X * _pieceWidth);
                 var posY = _fieldPositionY + (checkField.Y * _pieceWidth);
-                renderEngine.AddDrawStrokeRectToRender(posX, posY, _pieceWidth, _pieceHeight, "#FF3322", 2, 0.5f);
+                renderEngine.AddDrawStrokeRectToRender(posX, posY, _pieceWidth, _pieceHeight, "#76ea7c", 2, 0.5f);
             }
         }
     }
