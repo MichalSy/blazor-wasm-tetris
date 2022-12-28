@@ -170,7 +170,7 @@ public class RenderEngine : IRenderEngine
     [JSInvokable]
     public void SendKeyUpdate(string eventType, int keyCode)
     {
-        switch(eventType)
+        switch (eventType)
         {
             case "keydown":
                 _keyDownCache[keyCode] = true;
@@ -186,7 +186,7 @@ public class RenderEngine : IRenderEngine
     [JSInvokable]
     public void SendTouchUpdate(string eventType, int posX, int posY)
     {
-        switch(eventType)
+        switch (eventType)
         {
             case "touchstart":
                 OnTouchStarted?.Invoke(this, new Point(posX, posY));

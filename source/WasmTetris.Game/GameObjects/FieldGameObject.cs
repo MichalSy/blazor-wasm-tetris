@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using WasmTetris.Game.BaseGameObject;
 using WasmTetris.Game.Engine;
 
@@ -7,7 +6,6 @@ namespace WasmTetris.Game.GameObjects;
 
 public class FieldGameObject : GameObject
 {
-    private static Random _random = new((int)DateTime.Now.Ticks);
     private int _fieldPositionX;
     private int _fieldPositionY;
     private int _fieldWidth;
@@ -88,7 +86,7 @@ public class FieldGameObject : GameObject
             {
                 if (_fieldMap[y, x] != null)
                 {
-                    renderEngine.AddDrawFillRectToRender(_fieldPositionX + (x * _pieceWidth) + 1, _fieldPositionY + (y * _pieceHeight) + 1, _pieceWidth - 2, _pieceHeight - 2, _fieldMap[y, x].color, 1, 0);
+                    renderEngine.AddDrawFillRectToRender(_fieldPositionX + (x * _pieceWidth) + 1, _fieldPositionY + (y * _pieceHeight) + 1, _pieceWidth - 2, _pieceHeight - 2, _fieldMap[y, x].Color, 1, 0);
                 }
             }
         }

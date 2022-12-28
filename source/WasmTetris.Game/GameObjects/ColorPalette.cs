@@ -1,11 +1,9 @@
-﻿using System.Drawing;
-
-namespace WasmTetris.Game.GameObjects;
+﻿namespace WasmTetris.Game.GameObjects;
 
 public static class ColorPalette
 {
-    private static Random _random = new((int)DateTime.Now.Ticks);
-    public static string[] AllColors => new[]
+    private static readonly Random _random = new((int)DateTime.Now.Ticks);
+    public static IEnumerable<string> AllColors => new[]
     {
         "#d400e8",
         "#a813fb",
@@ -21,8 +19,5 @@ public static class ColorPalette
         "#f700d2"
     };
 
-    public static string GetRandomColor()
-    {
-        return AllColors[_random.Next(0, AllColors.Length)];
-    }
+    public static string GetRandomColor() => AllColors.Skip(_random.Next(0, AllColors.Count() - 1)).First();
 }

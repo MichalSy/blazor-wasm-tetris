@@ -7,14 +7,14 @@ namespace WasmTetris.Game;
 public partial class Game
 {
     [Inject]
-    public required IRenderEngine renderEngine { get; set; }
+    public required IRenderEngine RenderEngine { get; set; }
 
     protected override void OnInitialized()
     {
-        renderEngine.AddImageAsset("images/ChestBlue.png");
-        renderEngine.AddImageAsset("images/tile.png");
+        RenderEngine.AddImageAsset("images/ChestBlue.png");
+        RenderEngine.AddImageAsset("images/tile.png");
 
-        renderEngine.AddGameObject(new GameManager(renderEngine));
+        RenderEngine.AddGameObject(new GameManager(RenderEngine));
 
     }
 
@@ -22,7 +22,7 @@ public partial class Game
     {
         if (firstRender)
         {
-            renderEngine.StartRenderEngineAsync();
+            RenderEngine.StartRenderEngineAsync();
         }
     }
 }

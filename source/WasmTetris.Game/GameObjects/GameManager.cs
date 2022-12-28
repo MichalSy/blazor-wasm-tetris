@@ -6,27 +6,23 @@ namespace WasmTetris.Game.GameObjects;
 
 public class GameManager : GameObject
 {
-    private static readonly Random _random = new((int)DateTime.Now.Ticks);
     private readonly IRenderEngine _renderEngine;
 
     private static readonly int _fieldHorzMargin = 60;
     private static readonly int _maxPieceWidth = 32;
 
     private int _pieceWidth = 16;
-    private int _fieldTopMargin = 120;
+    private readonly int _fieldTopMargin = 120;
 
-    private int _fieldLinesX = 11;
-    private int _fieldLinesY = 25;
+    private readonly int _fieldLinesX = 11;
+    private readonly int _fieldLinesY = 25;
     private int _fieldWidth = 300;
     private int _fieldHeight = 500;
 
     private int _gameWidth = 300;
     private int _gameHeight = 600;
 
-    private int nextCheckTime;
-    private DateTime _lastInsert = DateTime.MinValue;
-
-    private FieldGameObject _fieldGO = new();
+    private readonly FieldGameObject _fieldGO = new();
     private PlayerPieceGameObject? _currentPlayerPiece;
 
 
@@ -38,7 +34,7 @@ public class GameManager : GameObject
         _renderEngine.OnKeyDown += RenderEngine_OnKeyDown;
     }
 
-    
+
 
     // Recalculate game size
     private void RenderEngine_OnWindowSizeChanged(object? sender, Size windowSize)
@@ -78,33 +74,33 @@ public class GameManager : GameObject
 
     private void RenderEngine_OnKeyDown(object? sender, int keyCode)
     {
-        if (keyCode == 38)
+        if (_currentPlayerPiece is null)
+            return;
+
+        switch (keyCode)
         {
-            _currentPlayerPiece?.RotateRight();
+            case 37: // Arrow Left
+                _currentPlayerPiece.MoveLeft();
+                return;
+
+            case 38: // Arrow Up
+                _currentPlayerPiece.RotateRight();
+                return;
+
+            case 39: // Arrow Right
+                _currentPlayerPiece.MoveRight();
+                return;
         }
     }
 
     public override void Update(IRenderEngine renderEngine, float time)
     {
-
-
         if (_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed)
         {
             _currentPlayerPiece = new PlayerPieceGameObject(_fieldGO);
             _currentPlayerPiece.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
             renderEngine.AddGameObject(_currentPlayerPiece);
         }
-
-        //if (nextCheckTime == 0 || _lastInsert.AddMilliseconds(nextCheckTime) < DateTime.UtcNow)
-        //{
-        //    nextCheckTime = _random.Next(5000, 6000);
-
-        //    var nn = new PlayerPieceGameObject(_fieldGO);
-        //    nn.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
-        //    renderEngine.AddGameObject(nn);
-
-        //    _lastInsert = DateTime.UtcNow;
-        //}
     }
 
     public override void Render(IRenderEngine renderEngine)
