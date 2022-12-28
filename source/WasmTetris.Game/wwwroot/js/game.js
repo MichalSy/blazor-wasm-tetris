@@ -171,6 +171,20 @@ var WasmTetris;
                 }
             }
         }
+        playsound(src, volume = 1, loop = false) {
+            let sound = document.createElement("audio");
+            sound.src = "sounds/" + src;
+            sound.setAttribute("preload", "auto");
+            sound.setAttribute("controls", "none");
+            sound.style.display = "none";
+            sound.volume = volume ?? 1;
+            sound.loop = loop;
+            document.body.appendChild(sound);
+            sound.onended = function () {
+                document.body.removeChild(sound);
+            };
+            sound.play();
+        }
         update(deltaTime) {
             this.renderContext.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
             this.renderEngine.invokeMethodAsync("UpdateGameObjects", deltaTime / 100.0);

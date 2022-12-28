@@ -134,6 +134,11 @@ public class RenderEngine : IRenderEngine
         await _jsReference!.InvokeVoidAsync("setCanvasSize", newSize.Width, newSize.Height);
     }
 
+    public async void PlaySound(string soundFileName, float volume = 1, bool loop = false)
+    {
+        await _jsReference!.InvokeVoidAsync("playsound", soundFileName, volume, loop);
+    }
+
     [JSInvokable]
     public async void SetWindowSize(int width, int height)
     {

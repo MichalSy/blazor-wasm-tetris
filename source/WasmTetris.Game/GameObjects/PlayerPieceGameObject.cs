@@ -27,7 +27,7 @@ public class PlayerPieceGameObject : GameObject
 
     private readonly bool _showCollisionLines = false;
 
-    private readonly float _movingSpeed = 15;
+    private readonly float _movingSpeed = 10;
     private float _movingMultiplyer = 1;
 
     public PlayerPieceGameObject(FieldGameObject fieldGameObject)
@@ -51,6 +51,7 @@ public class PlayerPieceGameObject : GameObject
 
     private void DestroyMyself(IRenderEngine renderEngine)
     {
+        //renderEngine.PlaySound("drop.mp3", .1f);
         _fieldGameObject.SetFieldData(_posXIndex, (int)Math.Ceiling(_piecePositionY / (float)_pieceHeight), _currentPiece.Blocks, _color);
         renderEngine.RemoveGameObject(this);
     }
