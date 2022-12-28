@@ -9,7 +9,7 @@
       "url": "_framework\/dotnet.timezones.blat"
     },
     {
-      "hash": "sha256-dOawYTp8nQNWCHIvgnoK44fqXHPiURtFk0uBVBOAeGI=",
+      "hash": "sha256-VoPMTEM2KigHCA\/dm\/fLVSck4Nx6aE1NWresGIXO\/Ds=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -137,15 +137,15 @@
       "url": "_framework\/System.Threading.dll"
     },
     {
-      "hash": "sha256-KhPE5OyZnrcvmmwkBLqvuEbqxfqxgT63u6i0FSFXynQ=",
+      "hash": "sha256-IN+kKaXzuJpQD8uCetda2pZIFY72F6wp5Bmlt8nLeek=",
       "url": "_framework\/WasmTetris.Game.dll"
     },
     {
-      "hash": "sha256-npCjhDpfqSKvXoz3Lpc6AYIQda6XA0oLY2Q4jm25L8E=",
+      "hash": "sha256-9TExeESCeBI3u8qKvpYbjmGpMfFmyj+Pr1Kra34FvyI=",
       "url": "_framework\/dotnet.7.0.1.4vfxaiujz8.js"
     },
     {
-      "hash": "sha256-62LOj3ji\/MxQOx3NGxPGZECnBG1Z+nOD567EzTOeXf0=",
+      "hash": "sha256-QlQJrFmHRJHyE\/wzodQzGJj5iPg\/Vf30P5jVciDbAPs=",
       "url": "_framework\/dotnet.wasm"
     },
     {
@@ -181,11 +181,11 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-ONrDhBDco\/tcsty6QnpQVviUqqGR5yPKGRjgvVSeyME=",
+      "hash": "sha256-xR7ILvjbLCaoUnkEEShiv5O49kvJBvmssUVvtIyrOIo=",
       "url": "js\/game.js"
     },
     {
-      "hash": "sha256-Lp+iSnXl8jKkLkliHq4ThTDPU9kVav13YRp3r\/UJ+FI=",
+      "hash": "sha256-7kVkzpJHbxrZJiQ+Vfzq9CBt9CIeol7f+gbFLcxp6Eo=",
       "url": "js\/game.js.map"
     },
     {
@@ -193,9 +193,21 @@
       "url": "manifest.json"
     },
     {
-      "hash": "sha256-8okvqR4EXwszVixszSIhwxgQ8g\/0jKCY9sxpdMU7wUY=",
-      "url": "sounds\/drop.mp3"
+      "hash": "sha256-TefcxsbWc7jtXXhQI9YCz0EBl3JTfqflMo46evK5YJc=",
+      "url": "sounds\/bg.ogg"
+    },
+    {
+      "hash": "sha256-ieLVKCg7EFBLTGp6wudd54sWPcJr3zBWlZYxeNCBKg0=",
+      "url": "sounds\/drop.ogg"
+    },
+    {
+      "hash": "sha256-bnqsR0rvRMJ6CXfxSeEnQmlEgJcgi4AJ213k7VGWFHE=",
+      "url": "sounds\/move.ogg"
+    },
+    {
+      "hash": "sha256-eAadLLLOm\/Es17a6QfsCyVjOLAE8u9MC0yDmWeQFdB4=",
+      "url": "sounds\/rotate.ogg"
     }
   ],
-  "version": "X0BDYXu7"
+  "version": "yRcs\/L45"
 };
