@@ -9,7 +9,7 @@
       "url": "_framework\/dotnet.timezones.blat"
     },
     {
-      "hash": "sha256-cHUMlmGksep2bF\/g6V\/zRDfXxtW70zcXj2v7v1NE2wU=",
+      "hash": "sha256-irz1avhn2L3o1lt5GiniiA59yEpp6E9ILiSMipcZOCA=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -137,7 +137,7 @@
       "url": "_framework\/System.Threading.dll"
     },
     {
-      "hash": "sha256-Ro+tkt9LWb7Kf37s2y1hKInpK2Z755lIUzsFAVnnLHw=",
+      "hash": "sha256-tVuCSnjjo4F+n7l6xiwgGJaEEjjqjwrffD5OQjCixWk=",
       "url": "_framework\/WasmTetris.Game.dll"
     },
     {
@@ -145,7 +145,7 @@
       "url": "_framework\/dotnet.7.0.1.4vfxaiujz8.js"
     },
     {
-      "hash": "sha256-nDxZWZRv5pULOoBnSyezSGHVpjXJRa0QTYTmYaIJUHg=",
+      "hash": "sha256-x9ZXj+N69WOTR8\/pE7chx1k0sWbUbyBBbVT5mMCZGx0=",
       "url": "_framework\/dotnet.wasm"
     },
     {
@@ -181,17 +181,21 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-hSku+kv2Ct5OxQQswrXO\/WTv1uvhyjTHKatpenpOMPc=",
+      "hash": "sha256-ONrDhBDco\/tcsty6QnpQVviUqqGR5yPKGRjgvVSeyME=",
       "url": "js\/game.js"
     },
     {
-      "hash": "sha256-McCaEDI7S9vfJlCqbtEjgUhK\/KDP+noItzRdyHnuZk8=",
+      "hash": "sha256-Lp+iSnXl8jKkLkliHq4ThTDPU9kVav13YRp3r\/UJ+FI=",
       "url": "js\/game.js.map"
     },
     {
       "hash": "sha256-6GTeg4Xl3iNdi0rln\/M4nfiLCjlG0a6tIVe\/yy5\/jjY=",
       "url": "manifest.json"
+    },
+    {
+      "hash": "sha256-8okvqR4EXwszVixszSIhwxgQ8g\/0jKCY9sxpdMU7wUY=",
+      "url": "sounds\/drop.mp3"
     }
   ],
-  "version": "BIjLae6p"
+  "version": "9aN\/Nwse"
 };
