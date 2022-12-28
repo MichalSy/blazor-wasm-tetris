@@ -10,6 +10,7 @@ public class RenderEngine : IRenderEngine
     private IJSObjectReference? _jsReference;
 
     private readonly List<string> _imageAssetsPreloadUrls = new();
+    private readonly List<string> _soundsAssetsPreloadUrls = new();
     private readonly List<GameObject> _activeGameObjects = new();
     private readonly List<object> _nextRenderObjectStack = new();
 
@@ -25,11 +26,13 @@ public class RenderEngine : IRenderEngine
     }
 
     public void AddImageAsset(string imageAssetUrl) => _imageAssetsPreloadUrls.Add(imageAssetUrl);
+    public void AddSoundAsset(string soundAssetUrl) => _soundsAssetsPreloadUrls.Add(soundAssetUrl);
 
-    public async void StartRenderEngineAsync()
+    public async Task StartRenderEngineAsync()
     {
         _jsReference = await _jsRuntime.InvokeAsync<IJSObjectReference>("WasmTetris.createRenderEngineInstance", DotNetObjectReference.Create(this));
         await _jsReference.InvokeVoidAsync("loadImages", _imageAssetsPreloadUrls);
+        await _jsReference.InvokeVoidAsync("loadSounds", _soundsAssetsPreloadUrls);
         await _jsReference.InvokeVoidAsync("startEngine");
     }
 

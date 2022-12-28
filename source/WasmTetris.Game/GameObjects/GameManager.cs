@@ -25,7 +25,7 @@ public class GameManager : GameObject
     private readonly FieldGameObject _fieldGO = new();
     private PlayerPieceGameObject? _currentPlayerPiece;
 
-    private bool _isGameRunning = false;
+    private bool _isGameRunning = true;
 
 
     public GameManager(IRenderEngine renderEngine)
@@ -87,7 +87,6 @@ public class GameManager : GameObject
                 return;
 
             case 32: // space
-                Console.WriteLine("GO");
                 _isGameRunning = true;
                 return;
             
@@ -113,7 +112,7 @@ public class GameManager : GameObject
     {
         if (_isGameRunning && (_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed))
         {
-            _currentPlayerPiece = new PlayerPieceGameObject(_fieldGO);
+            _currentPlayerPiece = new PlayerPieceGameObject(renderEngine, _fieldGO);
             _currentPlayerPiece.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
             renderEngine.AddGameObject(_currentPlayerPiece);
         }

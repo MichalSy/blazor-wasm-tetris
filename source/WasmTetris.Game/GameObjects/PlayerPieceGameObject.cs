@@ -21,6 +21,7 @@ public class PlayerPieceGameObject : GameObject
     private PieceConfig _currentPiece = PieceTypes.AllTypes.First();
 
     private int _posXIndex = 5;
+    private readonly IRenderEngine _renderEngine;
     private readonly FieldGameObject _fieldGameObject;
 
     private readonly List<Point> _checkMapFields = new();
@@ -33,11 +34,11 @@ public class PlayerPieceGameObject : GameObject
     private bool _needMoveRight;
     private bool _needMoveLeft;
 
-    public PlayerPieceGameObject(FieldGameObject fieldGameObject)
+    public PlayerPieceGameObject(IRenderEngine renderEngine, FieldGameObject fieldGameObject)
     {
         var allPieces = PieceTypes.AllTypes.ToArray();
         _currentPiece = allPieces[_random.Next(0, allPieces.Length - 1)];
-
+        _renderEngine = renderEngine;
         _fieldGameObject = fieldGameObject ?? throw new ArgumentNullException(nameof(fieldGameObject));
     }
 
@@ -54,7 +55,7 @@ public class PlayerPieceGameObject : GameObject
 
     private void DestroyMyself(IRenderEngine renderEngine)
     {
-        //renderEngine.PlaySound("drop.mp3", .1f);
+        renderEngine.PlaySound("drop.ogg", 1f);
         _fieldGameObject.SetFieldData(_posXIndex, (int)Math.Ceiling(_piecePositionY / (float)_pieceHeight), _currentPiece.Blocks, _color);
         renderEngine.RemoveGameObject(this);
     }
@@ -65,6 +66,7 @@ public class PlayerPieceGameObject : GameObject
             return;
 
         _currentPiece = _currentPiece with { Blocks = _currentPiece.Blocks.Select(p => new Point(-p.Y, p.X)) };
+        _renderEngine.PlaySound("rotate.ogg");
     }
 
     public void RotateLeft()
@@ -73,6 +75,7 @@ public class PlayerPieceGameObject : GameObject
             return;
 
         _currentPiece = _currentPiece with { Blocks = _currentPiece.Blocks.Select(p => new Point(p.Y, -p.X)) };
+        _renderEngine.PlaySound("rotate.ogg");
     }
 
     public void MoveLeft()
@@ -135,7 +138,7 @@ public class PlayerPieceGameObject : GameObject
                 && IsPieceMovementPossible(_posXIndex + 1, (int)Math.Floor(_piecePositionY / (float)_pieceHeight), true))
         {
             _posXIndex += 1;
-
+            renderEngine.PlaySound("move.ogg");
         }
         _needMoveRight = false;
 
@@ -145,7 +148,7 @@ public class PlayerPieceGameObject : GameObject
             && IsPieceMovementPossible(_posXIndex - 1, (int)Math.Floor(_piecePositionY / (float)_pieceHeight), true))
         {
             _posXIndex -= 1;
-
+            renderEngine.PlaySound("move.ogg");
         }
         _needMoveLeft = false;
 

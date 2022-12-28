@@ -14,11 +14,12 @@ public interface IRenderEngine
     void AddDrawImageToRender(string imageUrl, int posX, int posY);
     void AddDrawRectWithBorderToRender(string htmlColor, int posX, int posY, int width, int height);
     void RemoveGameObject(GameObject gameObject);
-    void StartRenderEngineAsync();
+    Task StartRenderEngineAsync();
     void SetCanvasSizeAsync(Size newSize);
     void AddDrawStrokeRectToRender(int posX, int posY, int width, int height, string htmlColor, int lineWidth = 1, float alpha = 1, float shadowBlur = 0);
     void AddDrawLineToRender(int posX, int posY, int posEndX, int posEndY, string htmlColor, int lineWidth = 1, float alpha = 1);
     bool IsKeyDown(int keyCode);
     void AddDrawFillRectToRender(int posX, int posY, int width, int height, string htmlColor, float alpha = 1, float shadowBlur = 0);
     void PlaySound(string soundFileName, float volume = 1, bool loop = false);
+    void AddSoundAsset(string soundAssetUrl);
 }

@@ -14,15 +14,22 @@ public partial class Game
         RenderEngine.AddImageAsset("images/ChestBlue.png");
         RenderEngine.AddImageAsset("images/tile.png");
 
+        RenderEngine.AddSoundAsset("drop.ogg");
+        RenderEngine.AddSoundAsset("rotate.ogg");
+        RenderEngine.AddSoundAsset("move.ogg");
+        RenderEngine.AddSoundAsset("bg.ogg");
+
         RenderEngine.AddGameObject(new GameManager(RenderEngine));
 
     }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async void OnAfterRender(bool firstRender)
     {
         if (firstRender)
         {
-            RenderEngine.StartRenderEngineAsync();
+            await RenderEngine.StartRenderEngineAsync();
+
+            RenderEngine.PlaySound("bg.ogg", 0.2f, true);
         }
     }
 }

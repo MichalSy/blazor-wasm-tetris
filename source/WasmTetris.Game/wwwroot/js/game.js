@@ -57,6 +57,7 @@ var WasmTetris;
         canvasHeight;
         fpsCalculator = new WasmTetris.FpsCalculator();
         imageLoader = new WasmTetris.ImageLoader();
+        soundLoader = new WasmTetris.SoundsLoader();
         renderEngine;
         canvasElement;
         constructor(renderEngine) {
@@ -80,6 +81,9 @@ var WasmTetris;
         }
         async loadImages(imageUrls) {
             await this.imageLoader.loadImages(imageUrls);
+        }
+        async loadSounds(soundUrls) {
+            await this.soundLoader.loadSounds(soundUrls);
         }
         async startEngine() {
             this.detectWindowSize();
@@ -172,18 +176,19 @@ var WasmTetris;
             }
         }
         playsound(src, volume = 1, loop = false) {
-            let sound = document.createElement("audio");
-            sound.src = "sounds/" + src;
-            sound.setAttribute("preload", "auto");
-            sound.setAttribute("controls", "none");
-            sound.style.display = "none";
-            sound.volume = volume ?? 1;
-            sound.loop = loop;
-            document.body.appendChild(sound);
-            sound.onended = function () {
-                document.body.removeChild(sound);
-            };
-            sound.play();
+            this.soundLoader.playSound(src, volume, loop);
+            //let sound = document.createElement("audio");
+            //sound.src = "sounds/" + src;
+            //sound.setAttribute("preload", "auto");
+            //sound.setAttribute("controls", "none");
+            //sound.style.display = "none";
+            //sound.volume = volume ?? 1;
+            //sound.loop = loop;
+            //document.body.appendChild(sound);
+            //sound.onended = function () {
+            //    document.body.removeChild(sound);
+            //};
+            //sound.play();
         }
         update(deltaTime) {
             this.renderContext.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
@@ -208,5 +213,45 @@ var WasmTetris;
         return new RenderEngine(renderEngine);
     }
     WasmTetris.createRenderEngineInstance = createRenderEngineInstance;
+})(WasmTetris || (WasmTetris = {}));
+var WasmTetris;
+(function (WasmTetris) {
+    class SoundsLoader {
+        soundSources = {};
+        loadSounds(soundUrls) {
+            return new Promise(async (r) => {
+                await Promise.all(soundUrls.map(async (soundUrl) => {
+                    let sound = new Audio();
+                    sound.setAttribute("preload", "auto");
+                    sound.setAttribute("controls", "none");
+                    sound.style.display = "none";
+                    sound.autoplay = false;
+                    //let prom = new Promise(r => sound.onload = r);
+                    sound.src = "sounds/" + soundUrl;
+                    //await prom;
+                    this.soundSources[soundUrl] = sound;
+                }));
+                r(0);
+            });
+        }
+        getSound(soundUrl) {
+            return this.soundSources[soundUrl];
+        }
+        playSound(soundUrl, volume = 1, loop = false) {
+            let sound = this.getSound(soundUrl);
+            sound.volume = volume;
+            sound.loop = loop;
+            var playedPromise = sound.play();
+            if (playedPromise) {
+                playedPromise.catch((e) => {
+                    console.log("try again");
+                    setTimeout(() => {
+                        this.playSound(soundUrl, volume, loop);
+                    }, 100);
+                });
+            }
+        }
+    }
+    WasmTetris.SoundsLoader = SoundsLoader;
 })(WasmTetris || (WasmTetris = {}));
 //# sourceMappingURL=game.js.map
