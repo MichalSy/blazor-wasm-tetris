@@ -9,7 +9,7 @@
       "url": "_framework\/dotnet.timezones.blat"
     },
     {
-      "hash": "sha256-lwRx4KriBSj\/1KlO\/s+F7Goflk8TMKHbnCut8bkU+s8=",
+      "hash": "sha256-cHUMlmGksep2bF\/g6V\/zRDfXxtW70zcXj2v7v1NE2wU=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -97,7 +97,7 @@
       "url": "_framework\/System.Drawing.Primitives.dll"
     },
     {
-      "hash": "sha256-m6VOTuKqeaS15F\/ZRoEkrPYA0kaoIR+r2nZmKaJiVnc=",
+      "hash": "sha256-qLJLVubUyEllVeQsEvw8jRoc+kt2xjYE4LCKgH8rsmw=",
       "url": "_framework\/System.Linq.dll"
     },
     {
@@ -109,7 +109,7 @@
       "url": "_framework\/System.ObjectModel.dll"
     },
     {
-      "hash": "sha256-LiTMlY2f+d+VMAZCH1+3irBBK4pJ6NitPmfTyMtnc7w=",
+      "hash": "sha256-2uCJR+vL3QNN+SglErSqy3QV6NTBVrrmRWawcaTUE2Q=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
@@ -137,7 +137,7 @@
       "url": "_framework\/System.Threading.dll"
     },
     {
-      "hash": "sha256-GPjhLr5zb7HDKGazrus28QluI8Cbo+RYnJ9XxyF9iMU=",
+      "hash": "sha256-Ro+tkt9LWb7Kf37s2y1hKInpK2Z755lIUzsFAVnnLHw=",
       "url": "_framework\/WasmTetris.Game.dll"
     },
     {
@@ -145,7 +145,7 @@
       "url": "_framework\/dotnet.7.0.1.4vfxaiujz8.js"
     },
     {
-      "hash": "sha256-Mms9+Nu24JhMi+pt28TdZCCEiD+7yYVavePurjmGRqc=",
+      "hash": "sha256-nDxZWZRv5pULOoBnSyezSGHVpjXJRa0QTYTmYaIJUHg=",
       "url": "_framework\/dotnet.wasm"
     },
     {
@@ -153,7 +153,7 @@
       "url": "WasmTetris.Game.styles.css"
     },
     {
-      "hash": "sha256-EbDoR1iUVHMduigo5lZsgzPQ3CML8PQ1rZa\/vEgzBzk=",
+      "hash": "sha256-mLT8JW\/lRv2bSPagei9CUQfWRyWAZb5PQ03Yh0Q3MXw=",
       "url": "css\/app.css"
     },
     {
@@ -165,6 +165,10 @@
       "url": "icon-512.png"
     },
     {
+      "hash": "sha256-\/nafxwmzBE\/f4tD30FTbQHO8N5FiF1VFpI\/fEf3iOTQ=",
+      "url": "images\/bg.jpg"
+    },
+    {
       "hash": "sha256-xN1bZnIWaWKuSrSJDEwdnaG1xXPjJ42qnsc0x3Jq6Ms=",
       "url": "images\/ChestBlue.png"
     },
@@ -173,7 +177,7 @@
       "url": "images\/tile.png"
     },
     {
-      "hash": "sha256-OOb5NsVEQLUfXmIknQ\/CVD4NAxEwHgUBN5c44SVNW00=",
+      "hash": "sha256-\/Tm5jeMu5hZkyfgHGC+0PR9TegQ7in0PukQqKHqD7ag=",
       "url": "index.html"
     },
     {
@@ -189,5 +193,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "IS7qnV2M"
+  "version": "BIjLae6p"
 };

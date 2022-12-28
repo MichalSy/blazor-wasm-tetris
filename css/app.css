@@ -1,8 +1,3 @@
-html {
-    touch-action: none;
-    height: 100%;
-}
-
 * {
     overflow: hidden;
     -webkit-touch-callout: none; /* iOS Safari */
@@ -15,17 +10,38 @@ html {
     padding: 0;
 }
 
+html {
+    touch-action: none;
+    height: 100%;
+    background: black;
+}
+
+.background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0.1;
+    background: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    z-index: 50;
+}
+
 body {
     overscroll-behavior: contain;
     height: 100%;
-    background-color: #262626;
     color: white;
 }
 
 #app {
     width: 100%;
     height: 100%;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100;
 }
