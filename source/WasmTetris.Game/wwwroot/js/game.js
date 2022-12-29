@@ -228,6 +228,7 @@ var WasmTetris;
             let sound = this.getSound(soundUrl);
             sound.volume = volume;
             sound.loop = loop;
+            sound.currentTime = 0;
             var playedPromise = sound.play();
             if (playedPromise) {
                 playedPromise.catch((e) => {

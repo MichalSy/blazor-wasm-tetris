@@ -29,6 +29,9 @@ namespace WasmTetris {
             sound.volume = volume;
             sound.loop = loop;
 
+
+            sound.currentTime = 0;
+
             var playedPromise = sound.play();
             if (playedPromise) {
                 playedPromise.catch((e) => {
@@ -37,6 +40,7 @@ namespace WasmTetris {
                     }, 100);
                 });
             }
+
         }
     }
 }
