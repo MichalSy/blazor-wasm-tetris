@@ -71,6 +71,28 @@ public class FieldGameObject : GameObject
         if (fullLines.Any())
         {
             var removeCount = _fieldMap.RemoveAll(y => y.All(x => x is not null));
+            switch (removeCount)
+            {
+                case 1:
+                    renderEngine.PlaySound("line1.ogg");
+                    break;
+
+                case 2:
+                    renderEngine.PlaySound("line2.ogg");
+                    break;
+
+                case 3:
+                    renderEngine.PlaySound("line3.ogg");
+                    break;
+
+                case 4:
+                    renderEngine.PlaySound("line4.ogg");
+                    break;
+
+                default:
+                    renderEngine.PlaySound("line5.ogg");
+                    break;
+            }
             _fieldMap.InsertRange(0, Enumerable.Range(0, removeCount).Select(y => new PieceMapData[_fieldLinesX]));
         }
     }

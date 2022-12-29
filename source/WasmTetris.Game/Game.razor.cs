@@ -18,6 +18,11 @@ public partial class Game
         RenderEngine.AddSoundAsset("rotate.ogg");
         RenderEngine.AddSoundAsset("move.ogg");
         RenderEngine.AddSoundAsset("bg.ogg");
+        RenderEngine.AddSoundAsset("line1.ogg");
+        RenderEngine.AddSoundAsset("line2.ogg");
+        RenderEngine.AddSoundAsset("line3.ogg");
+        RenderEngine.AddSoundAsset("line4.ogg");
+        RenderEngine.AddSoundAsset("line5.ogg");
 
         RenderEngine.AddGameObject(new GameManager(RenderEngine));
 
