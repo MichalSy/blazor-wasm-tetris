@@ -133,6 +133,7 @@ var WasmTetris;
         }
         drawLine(command) {
             let data = command.data;
+            this.renderContext.globalCompositeOperation = "source-over";
             this.renderContext.strokeStyle = data.color ?? "#000";
             this.renderContext.lineWidth = data.lineWidth ?? 1;
             this.renderContext.globalAlpha = data.alpha ?? 1;
@@ -244,7 +245,6 @@ var WasmTetris;
             var playedPromise = sound.play();
             if (playedPromise) {
                 playedPromise.catch((e) => {
-                    console.log("try again");
                     setTimeout(() => {
                         this.playSound(soundUrl, volume, loop);
                     }, 100);

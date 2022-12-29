@@ -28,17 +28,17 @@
       "System.Console.dll": "sha256-yoOE0o5DeltV3hKmFpr3Fvv3kh8tVLH5JO0KKShfZbM=",
       "System.Drawing.dll": "sha256-dmsXc\/zOEscgFzc7\/gWgt2Ec6Qfy32\/okFNlGw\/WucI=",
       "System.Drawing.Primitives.dll": "sha256-L8frJSHJ9nbFcx5NLtWcqcPDnKeqEWMVgdOMeyPiVS4=",
-      "System.Linq.dll": "sha256-qLJLVubUyEllVeQsEvw8jRoc+kt2xjYE4LCKgH8rsmw=",
+      "System.Linq.dll": "sha256-Vahg+fA6fBsqMXEhp1ZZBboVdeCpqoAQyS6tpbWH5GY=",
       "System.Memory.dll": "sha256-LhiI20vyUzSAGjy2\/hiMrS1kcBvV8BG2dFRk+3V68tw=",
       "System.ObjectModel.dll": "sha256-wl4at8hUDbdbmSWEhM0sI0bbPTs3Brbrctg8foNDg9Q=",
       "System.Private.CoreLib.dll": "sha256-2uCJR+vL3QNN+SglErSqy3QV6NTBVrrmRWawcaTUE2Q=",
       "System.Private.Uri.dll": "sha256-6lR0k3G4pQCC85Yjj\/oCfxgVo4gti8oKRPttOw+YdR4=",
-      "System.Runtime.dll": "sha256-8IqKsOZJGGhQcjw03JqJroSJzn1ET06txTa\/AmjSRZI=",
+      "System.Runtime.dll": "sha256-aMOCsuot08wNHLJJmnCS07q6Jf0s3amHaXmIdc2xAPs=",
       "System.Runtime.InteropServices.JavaScript.dll": "sha256-yzwrz7wGkCbCGzHjhDdsfqjlUQpaQ54vPWBNJGMIy98=",
       "System.Text.Encodings.Web.dll": "sha256-NXJcycwPkccUFCNu0n2sxP9gtjPyjOXALuj6i9hcekw=",
       "System.Text.Json.dll": "sha256-fEDr2La2g24TFY0NqWL2F6vKAXN05tJhPtzzCdEUXd4=",
       "System.Threading.dll": "sha256-bsU+q53OkgajbgMUeEpBf\/m7TEMgC48wljQG6wO4TMs=",
-      "WasmTetris.Game.dll": "sha256-9sBe1KsjqqPZ+bBh+KhlBskI8+zfexGUPsPzUwRYFH0="
+      "WasmTetris.Game.dll": "sha256-\/4b2XjwsTR4mIHapRO99hxgoDxeLQN6iSAq0sTIp1es="
     },
     "extensions": null,
     "lazyAssembly": null,
@@ -47,12 +47,12 @@
     "runtime": {
       "dotnet.7.0.1.4vfxaiujz8.js": "sha256-9TExeESCeBI3u8qKvpYbjmGpMfFmyj+Pr1Kra34FvyI=",
       "dotnet.timezones.blat": "sha256-6Aw0ALXLw\/A0vGcC5uG5GnFafYpL\/iHHLo22LyOR+TA=",
-      "dotnet.wasm": "sha256-ereTzQN+uQM\/omNFzmZUba\/veTlqzQk93ot3pur+BB0="
+      "dotnet.wasm": "sha256-osV1mGPcRvfGj8N\/g42uMftIN4safRntT\/7d0xHydTc="
     },
     "runtimeAssets": {
       "dotnet.wasm": {
         "behavior": "dotnetwasm",
-        "hash": "sha256-ereTzQN+uQM\/omNFzmZUba\/veTlqzQk93ot3pur+BB0="
+        "hash": "sha256-osV1mGPcRvfGj8N\/g42uMftIN4safRntT\/7d0xHydTc="
       }
     },
     "satelliteResources": null

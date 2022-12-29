@@ -9,7 +9,7 @@
       "url": "_framework\/dotnet.timezones.blat"
     },
     {
-      "hash": "sha256-tq\/VxbyO+pfDl7BEuwCVKpd\/e7K5X4o+rHxPfBTg9Zk=",
+      "hash": "sha256-\/SJvx+P1GmBcNGTjLirDUkZ7a0TypyVVl3lsnEwIExM=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -97,7 +97,7 @@
       "url": "_framework\/System.Drawing.Primitives.dll"
     },
     {
-      "hash": "sha256-qLJLVubUyEllVeQsEvw8jRoc+kt2xjYE4LCKgH8rsmw=",
+      "hash": "sha256-Vahg+fA6fBsqMXEhp1ZZBboVdeCpqoAQyS6tpbWH5GY=",
       "url": "_framework\/System.Linq.dll"
     },
     {
@@ -117,7 +117,7 @@
       "url": "_framework\/System.Private.Uri.dll"
     },
     {
-      "hash": "sha256-8IqKsOZJGGhQcjw03JqJroSJzn1ET06txTa\/AmjSRZI=",
+      "hash": "sha256-aMOCsuot08wNHLJJmnCS07q6Jf0s3amHaXmIdc2xAPs=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -137,7 +137,7 @@
       "url": "_framework\/System.Threading.dll"
     },
     {
-      "hash": "sha256-9sBe1KsjqqPZ+bBh+KhlBskI8+zfexGUPsPzUwRYFH0=",
+      "hash": "sha256-\/4b2XjwsTR4mIHapRO99hxgoDxeLQN6iSAq0sTIp1es=",
       "url": "_framework\/WasmTetris.Game.dll"
     },
     {
@@ -145,7 +145,7 @@
       "url": "_framework\/dotnet.7.0.1.4vfxaiujz8.js"
     },
     {
-      "hash": "sha256-ereTzQN+uQM\/omNFzmZUba\/veTlqzQk93ot3pur+BB0=",
+      "hash": "sha256-osV1mGPcRvfGj8N\/g42uMftIN4safRntT\/7d0xHydTc=",
       "url": "_framework\/dotnet.wasm"
     },
     {
@@ -181,11 +181,11 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-xR7ILvjbLCaoUnkEEShiv5O49kvJBvmssUVvtIyrOIo=",
+      "hash": "sha256-ENcNqU\/+iDDYT6gTEWkvhM3uwhxB8jNWv2Dt9+m0XVU=",
       "url": "js\/game.js"
     },
     {
-      "hash": "sha256-7kVkzpJHbxrZJiQ+Vfzq9CBt9CIeol7f+gbFLcxp6Eo=",
+      "hash": "sha256-P82zKsTyHEFhnzKm6A27awIsglejZ1zd7mUDsZ1NdbI=",
       "url": "js\/game.js.map"
     },
     {
@@ -209,5 +209,5 @@
       "url": "sounds\/rotate.ogg"
     }
   ],
-  "version": "E9YVshPW"
+  "version": "LcRNuj9q"
 };
