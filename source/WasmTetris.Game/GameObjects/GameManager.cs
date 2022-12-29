@@ -23,9 +23,10 @@ public class GameManager : GameObject
     private int _gameHeight = 600;
 
     private readonly FieldGameObject _fieldGO = new();
+    private readonly StartGameUIGameObject _startGameUI = new();
     private PlayerPieceGameObject? _currentPlayerPiece;
 
-    private bool _isGameRunning = true;
+    private bool _isGameRunning = false;
 
 
     public GameManager(IRenderEngine renderEngine)
@@ -59,6 +60,7 @@ public class GameManager : GameObject
 
         _fieldGO.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _fieldLinesY, _pieceWidth, _pieceWidth);
 
+        _startGameUI.SetCenterPoint(_fieldHorzMargin + (_fieldWidth / 2), _fieldTopMargin + (_fieldHeight / 2));
         //Console.WriteLine($"Game: {_gameWidth}x{_gameHeight}, Field: {_fieldWidth}x{_fieldHeight},  Piece: {_pieceWidth}");
     }
 
@@ -85,11 +87,7 @@ public class GameManager : GameObject
         switch (keyCode)
         {
             case 27: // esc
-                _isGameRunning = false;
-                if (_currentPlayerPiece is not null)
-                {
-                    _renderEngine.RemoveGameObject(_currentPlayerPiece);
-                }
+                GameOver();
                 return;
 
             case 17: // crtl
@@ -138,7 +136,7 @@ public class GameManager : GameObject
                 _currentPlayerPiece.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
                 renderEngine.AddGameObject(_currentPlayerPiece);
             }
-        }
+        } 
 
 
 
@@ -147,7 +145,10 @@ public class GameManager : GameObject
     public override void Render(IRenderEngine renderEngine)
     {
         _fieldGO.Render(renderEngine);
-
+        if (!_isGameRunning)
+        {
+            _startGameUI.Render(renderEngine);
+        }
     }
 
     

@@ -22,4 +22,5 @@ public interface IRenderEngine
     void AddDrawFillRectToRender(int posX, int posY, int width, int height, string htmlColor, float alpha = 1, float shadowBlur = 0);
     void PlaySound(string soundFileName, float volume = 1, bool loop = false);
     void AddSoundAsset(string soundAssetUrl);
+    void AddDrawTextToRender(int posX, int posY, string text, string htmlColor, string textAlign = "left", float alpha = 1, float shadowBlur = 0);
 }

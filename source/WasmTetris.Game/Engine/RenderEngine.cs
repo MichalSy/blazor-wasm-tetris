@@ -131,6 +131,26 @@ public class RenderEngine : IRenderEngine
         });
     }
 
+    public void AddDrawTextToRender(int posX, int posY, string text, string htmlColor, string textAlign = "left", float alpha = 1, float shadowBlur = 0)
+    {
+        _nextRenderObjectStack.Add(new RenderObject<object>
+        {
+            Type = "Text",
+            PositionX = posX,
+            PositionY = posY,
+            Width = 0,
+            Height = 0,
+            Data = new
+            {
+                Color = htmlColor,
+                TextAlign = textAlign,
+                Text = text,
+                Alpha = alpha,
+                ShadowBlur = shadowBlur
+            }
+        });
+    }
+
 
     public async void SetCanvasSizeAsync(Size newSize)
     {

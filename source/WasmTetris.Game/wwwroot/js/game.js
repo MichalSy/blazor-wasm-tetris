@@ -145,6 +145,20 @@ var WasmTetris;
             this.renderContext.globalAlpha = 1;
             this.renderContext.shadowBlur = 0;
         }
+        drawText(command) {
+            let data = command.data;
+            this.renderContext.fillStyle = data.color ?? "#000";
+            this.renderContext.shadowColor = data.color ?? "#000";
+            this.renderContext.font = "normal 16pt Arial";
+            this.renderContext.textAlign = data.textAlign ?? "left";
+            this.renderContext.textBaseline = data.textBaseLine ?? "middle";
+            this.renderContext.globalAlpha = data.alpha ?? 1;
+            this.renderContext.shadowBlur = data.shadowBlur ?? 0;
+            this.renderContext.fillText(data.text ?? "Text", command.positionX, command.positionY);
+            this.renderContext.textAlign = "left";
+            this.renderContext.globalAlpha = 1;
+            this.renderContext.shadowBlur = 0;
+        }
         drawImages(images) {
             for (let i of images) {
                 let image = this.imageLoader.getImage(i.imageUrl);
@@ -173,6 +187,9 @@ var WasmTetris;
                 }
                 else if (obj.type === "Line") {
                     this.drawLine(obj);
+                }
+                else if (obj.type === "Text") {
+                    this.drawText(obj);
                 }
             }
         }
