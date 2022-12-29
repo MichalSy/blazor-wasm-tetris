@@ -35,6 +35,11 @@ public class FieldGameObject : GameObject
         }
     }
 
+    internal void ClearField()
+    {
+        _fieldMap = Enumerable.Range(0, _fieldLinesY).Select(y => new PieceMapData[_fieldLinesX]).ToList();
+    }
+
     public bool IsFieldPositionEmpty(int positionX, int positionY)
     {
         if (positionX < 0 | positionY < 0 | positionX >= _fieldLinesX)
@@ -124,4 +129,6 @@ public class FieldGameObject : GameObject
             }
         }
     }
+
+    
 }

@@ -22,6 +22,7 @@ public class PlayerPieceGameObject : GameObject
 
     private int _posXIndex = 5;
     private readonly IRenderEngine _renderEngine;
+    private readonly GameManager _gameManager;
     private readonly FieldGameObject _fieldGameObject;
 
     private readonly List<Point> _checkMapFields = new();
@@ -34,10 +35,11 @@ public class PlayerPieceGameObject : GameObject
     private bool _needMoveRight;
     private bool _needMoveLeft;
 
-    public PlayerPieceGameObject(IRenderEngine renderEngine, FieldGameObject fieldGameObject)
+    public PlayerPieceGameObject(IRenderEngine renderEngine, GameManager gameManager, FieldGameObject fieldGameObject)
     {
         _currentPiece = PieceTypes.GetRandomPiece();
         _renderEngine = renderEngine;
+        _gameManager = gameManager;
         _fieldGameObject = fieldGameObject ?? throw new ArgumentNullException(nameof(fieldGameObject));
     }
 
@@ -54,6 +56,12 @@ public class PlayerPieceGameObject : GameObject
 
     private void DestroyMyself(IRenderEngine renderEngine)
     {
+        if (_piecePositionY == 0)
+        {
+            _gameManager.GameOver();
+            return;
+        }
+
         renderEngine.PlaySound("drop.ogg", 1f);
         _fieldGameObject.SetFieldData(_posXIndex, (int)Math.Ceiling(_piecePositionY / (float)_pieceHeight), _currentPiece.Blocks, _color);
         renderEngine.RemoveGameObject(this);

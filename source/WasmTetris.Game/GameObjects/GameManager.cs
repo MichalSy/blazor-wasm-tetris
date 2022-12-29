@@ -108,6 +108,16 @@ public class GameManager : GameObject
         }
     }
 
+    internal void GameOver()
+    {
+        if (_currentPlayerPiece is not null)
+        {
+            _renderEngine.RemoveGameObject(_currentPlayerPiece);
+        }
+        _fieldGO.ClearField();
+        //_isGameRunning = false;
+    }
+
     public override void Update(IRenderEngine renderEngine, float time)
     {
         if (_isGameRunning)
@@ -116,7 +126,7 @@ public class GameManager : GameObject
 
             if (_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed)
             {
-                _currentPlayerPiece = new PlayerPieceGameObject(renderEngine, _fieldGO);
+                _currentPlayerPiece = new PlayerPieceGameObject(renderEngine, this, _fieldGO);
                 _currentPlayerPiece.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
                 renderEngine.AddGameObject(_currentPlayerPiece);
             }
@@ -131,4 +141,6 @@ public class GameManager : GameObject
         _fieldGO.Render(renderEngine);
 
     }
+
+    
 }

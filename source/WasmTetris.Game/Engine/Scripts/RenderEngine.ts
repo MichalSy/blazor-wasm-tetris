@@ -130,7 +130,6 @@
         }
 
         drawObjects(renderObjects: Array<{ data: unknown, type: string, positionX: number, positionY: number, width: number, height: number }>) {
-
             for (let obj of renderObjects) {
                 if (obj.type === "Image") {
                     let i = <any>obj.data;
@@ -180,9 +179,6 @@
             this.lastRender = timestamp;
             window.requestAnimationFrame(this.loop);
         }
-
-
-
     }
 
     export function createRenderEngineInstance(renderEngine): RenderEngine {
