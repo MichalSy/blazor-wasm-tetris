@@ -105,6 +105,7 @@
         private drawLine(command: { data: unknown, positionX: number, positionY: number, width: number, height: number }) {
             let data = <any>command.data;
 
+            this.renderContext.globalCompositeOperation = "source-over";
             this.renderContext.strokeStyle = data.color ?? "#000";
             this.renderContext.lineWidth = data.lineWidth ?? 1;
             this.renderContext.globalAlpha = data.alpha ?? 1;

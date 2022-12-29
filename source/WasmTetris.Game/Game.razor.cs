@@ -29,7 +29,7 @@ public partial class Game
         {
             await RenderEngine.StartRenderEngineAsync();
 
-            RenderEngine.PlaySound("bg.ogg", 0.2f, true);
+            RenderEngine.PlaySound("bg.ogg", 0.1f, true);
         }
     }
 }

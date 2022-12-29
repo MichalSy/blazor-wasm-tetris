@@ -89,7 +89,7 @@ public class GameManager : GameObject
             case 32: // space
                 _isGameRunning = true;
                 return;
-            
+
             case 17: // crtl
                 _currentPlayerPiece?.RotateLeft();
                 return;
@@ -110,12 +110,20 @@ public class GameManager : GameObject
 
     public override void Update(IRenderEngine renderEngine, float time)
     {
-        if (_isGameRunning && (_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed))
+        if (_isGameRunning)
         {
-            _currentPlayerPiece = new PlayerPieceGameObject(renderEngine, _fieldGO);
-            _currentPlayerPiece.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
-            renderEngine.AddGameObject(_currentPlayerPiece);
+            _fieldGO.Update(renderEngine, time);
+
+            if (_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed)
+            {
+                _currentPlayerPiece = new PlayerPieceGameObject(renderEngine, _fieldGO);
+                _currentPlayerPiece.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
+                renderEngine.AddGameObject(_currentPlayerPiece);
+            }
         }
+
+
+
     }
 
     public override void Render(IRenderEngine renderEngine)

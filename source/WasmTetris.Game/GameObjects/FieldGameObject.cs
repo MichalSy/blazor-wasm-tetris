@@ -15,7 +15,7 @@ public class FieldGameObject : GameObject
     private int _pieceWidth;
     private int _pieceHeight;
 
-    private PieceMapData[,] _fieldMap = new PieceMapData[0, 0];
+    private List<PieceMapData[]> _fieldMap = new ();
 
     internal void SetFieldSetup(int fieldPositionX, int fieldPositionY, int fieldLinesX, int fieldLinesY, int pieceWidth, int pieceHeight)
     {
@@ -29,10 +29,9 @@ public class FieldGameObject : GameObject
         _fieldWidth = _fieldLinesX * _pieceWidth;
         _fieldHeight = _fieldLinesY * _pieceHeight;
 
-        if (_fieldMap.Length == 0)
+        if (_fieldMap.Count == 0)
         {
-            _fieldMap = new PieceMapData[_fieldLinesY, _fieldLinesX];
-            //_fieldMap[12, 5] = new PieceMapData("#BB2212");
+            _fieldMap = Enumerable.Range(0, _fieldLinesY).Select(y => new PieceMapData[_fieldLinesX]).ToList();
         }
     }
 
@@ -48,7 +47,7 @@ public class FieldGameObject : GameObject
             return false;
         }
 
-        return _fieldMap[positionY, positionX] == null;
+        return _fieldMap[positionY][positionX] == null;
     }
 
     public void SetFieldData(int positionIndexX, int poisitionIndexY, IEnumerable<Point> pieces, string color)
@@ -61,33 +60,44 @@ public class FieldGameObject : GameObject
             if (pieceIndexX >= 0 && pieceIndexY >= 0)
             {
                 //Console.WriteLine($"PosI_X: {positionIndexX + currentPiece.X}, PosI_Y: {poisitionIndexY + currentPiece.Y}, Color: {color}");
-                _fieldMap[poisitionIndexY + currentPiece.Y, positionIndexX + currentPiece.X] = new PieceMapData(color);
+                _fieldMap[poisitionIndexY + currentPiece.Y][positionIndexX + currentPiece.X] = new PieceMapData(color);
             }
+        }
+    }
+
+    public override void Update(IRenderEngine renderEngine, float time)
+    {
+        var fullLines = _fieldMap.Where(y => y.All(x => x is not null));
+        if (fullLines.Any())
+        {
+            var removeCount = _fieldMap.RemoveAll(y => y.All(x => x is not null));
+            _fieldMap.InsertRange(0, Enumerable.Range(0, removeCount).Select(y => new PieceMapData[_fieldLinesX]));
         }
     }
 
     public override void Render(IRenderEngine renderEngine)
     {
+        renderEngine.AddDrawFillRectToRender(_fieldPositionX, _fieldPositionY, _fieldWidth, _fieldHeight, "#000", 0.9f);
+
         for (int i = 1; i < _fieldLinesX; i++)
         {
-            renderEngine.AddDrawLineToRender(_fieldPositionX + (i * _pieceWidth), _fieldPositionY, _fieldPositionX + (i * _pieceWidth), _fieldPositionY + _fieldHeight, "#3260a8", 2, .7f);
+            renderEngine.AddDrawLineToRender(_fieldPositionX + (i * _pieceWidth), _fieldPositionY, _fieldPositionX + (i * _pieceWidth), _fieldPositionY + _fieldHeight, "#3260a8", 2, .2f);
         }
 
         for (int i = 1; i < _fieldLinesY; i++)
         {
-            renderEngine.AddDrawLineToRender(_fieldPositionX, _fieldPositionY + (i * _pieceHeight), _fieldPositionX + _fieldWidth, _fieldPositionY + (i * _pieceHeight), "#3260a8", 2, .7f);
+            renderEngine.AddDrawLineToRender(_fieldPositionX, _fieldPositionY + (i * _pieceHeight), _fieldPositionX + _fieldWidth, _fieldPositionY + (i * _pieceHeight), "#3260a8", 2, .2f);
         }
 
-        renderEngine.AddDrawFillRectToRender(_fieldPositionX, _fieldPositionY, _fieldWidth, _fieldHeight, "#000", 0.9f);
         renderEngine.AddDrawStrokeRectToRender(_fieldPositionX, _fieldPositionY, _fieldWidth, _fieldHeight, "#3260a8", 2, 1, 10);
 
         for (int y = 0; y < _fieldLinesY; y++)
         {
             for (int x = 0; x < _fieldLinesX; x++)
             {
-                if (_fieldMap[y, x] != null)
+                if (_fieldMap[y][x] != null)
                 {
-                    renderEngine.AddDrawFillRectToRender(_fieldPositionX + (x * _pieceWidth) + 1, _fieldPositionY + (y * _pieceHeight) + 1, _pieceWidth - 2, _pieceHeight - 2, _fieldMap[y, x].Color, 1, 0);
+                    renderEngine.AddDrawFillRectToRender(_fieldPositionX + (x * _pieceWidth) + 1, _fieldPositionY + (y * _pieceHeight) + 1, _pieceWidth - 2, _pieceHeight - 2, _fieldMap[y][x].Color, 1, 0);
                 }
             }
         }

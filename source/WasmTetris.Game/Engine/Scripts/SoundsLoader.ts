@@ -34,7 +34,6 @@ namespace WasmTetris {
             var playedPromise = sound.play();
             if (playedPromise) {
                 playedPromise.catch((e) => {
-                    console.log("try again");
                     setTimeout(() => {
                         this.playSound(soundUrl, volume, loop);
                     }, 100);

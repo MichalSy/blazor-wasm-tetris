@@ -125,7 +125,7 @@ public class PlayerPieceGameObject : GameObject
             }
             else
             {
-                newPosY = _piecePositionY + (int)Math.Ceiling((_movingSpeed * 3) * _movingMultiplyer * time);
+                newPosY = _piecePositionY + (int)Math.Ceiling(90f * _movingMultiplyer * time);
             }
         }
 
