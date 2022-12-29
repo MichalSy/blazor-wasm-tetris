@@ -181,11 +181,11 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-gm+20rnLfpO2SKRUKriW2bgh3cBm0f4WEneweXqT910=",
+      "hash": "sha256-yGceQsXhmwyH+RwnnopGD61Tju3Mr3pPRjbtizfdPhM=",
       "url": "js\/game.js"
     },
     {
-      "hash": "sha256-tU0w829fiJcsssNNl8aXPJ6ntfN5W\/rVxxqlJtBAtRk=",
+      "hash": "sha256-xuKx5Y9XKkXmqkLAUISMwCWTRUDdzEsXV3XEm2q9Mp0=",
       "url": "js\/game.js.map"
     },
     {
@@ -229,5 +229,5 @@
       "url": "sounds\/rotate.ogg"
     }
   ],
-  "version": "29qGggwX"
+  "version": "gW+RM6mu"
 };
