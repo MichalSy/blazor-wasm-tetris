@@ -12,9 +12,7 @@ namespace WasmTetris {
                     sound.setAttribute("controls", "none");
                     sound.style.display = "none";
                     sound.autoplay = false;
-                    //let prom = new Promise(r => sound.onload = r);
                     sound.src = "sounds/" + soundUrl;
-                    //await prom;
 
                     this.soundSources[soundUrl] = sound;
                 }));

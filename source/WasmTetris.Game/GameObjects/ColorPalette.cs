@@ -3,6 +3,8 @@
 public static class ColorPalette
 {
     private static readonly Random _random = new((int)DateTime.Now.Ticks);
+    public static string GetRandomColor() => AllColors.Skip(_random.Next(0, AllColors.Count())).First();
+
     public static IEnumerable<string> AllColors => new[]
     {
         "#d400e8",
@@ -18,6 +20,4 @@ public static class ColorPalette
         "#f7009d",
         "#f700d2"
     };
-
-    public static string GetRandomColor() => AllColors.Skip(_random.Next(0, AllColors.Count() - 1)).First();
 }

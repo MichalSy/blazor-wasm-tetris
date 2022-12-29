@@ -36,8 +36,7 @@ public class PlayerPieceGameObject : GameObject
 
     public PlayerPieceGameObject(IRenderEngine renderEngine, FieldGameObject fieldGameObject)
     {
-        var allPieces = PieceTypes.AllTypes.ToArray();
-        _currentPiece = allPieces[_random.Next(0, allPieces.Length - 1)];
+        _currentPiece = PieceTypes.GetRandomPiece();
         _renderEngine = renderEngine;
         _fieldGameObject = fieldGameObject ?? throw new ArgumentNullException(nameof(fieldGameObject));
     }

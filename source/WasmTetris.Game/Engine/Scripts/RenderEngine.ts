@@ -151,22 +151,7 @@
         }
 
         public playsound(src: string, volume = 1, loop = false) {
-
             this.soundLoader.playSound(src, volume, loop);
-            //let sound = document.createElement("audio");
-            //sound.src = "sounds/" + src;
-            //sound.setAttribute("preload", "auto");
-            //sound.setAttribute("controls", "none");
-            //sound.style.display = "none";
-            //sound.volume = volume ?? 1;
-            //sound.loop = loop;
-            //document.body.appendChild(sound);
-
-            //sound.onended = function () {
-            //    document.body.removeChild(sound);
-            //};
-
-            //sound.play();
         }
 
         update(deltaTime) {
