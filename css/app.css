@@ -22,7 +22,7 @@ html {
     right: 0;
     top: 0;
     bottom: 0;
-    opacity: 0.1;
+    opacity: 1;
     background: url(../images/bg.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
