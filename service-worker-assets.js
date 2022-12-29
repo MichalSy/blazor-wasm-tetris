@@ -9,7 +9,7 @@
       "url": "_framework\/dotnet.timezones.blat"
     },
     {
-      "hash": "sha256-HjVNxPNDSr2c2hbIT1d1P+Ca2gy9osJPvbTEplnVOXY=",
+      "hash": "sha256-7YEDeXs2F7Dw2klevdmStZRa1txAoIGnsBheJ1geQIE=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -137,7 +137,7 @@
       "url": "_framework\/System.Threading.dll"
     },
     {
-      "hash": "sha256-nySEBBzNzA8DeoeeDmdFKbnSOufF+hLcufD16B74a08=",
+      "hash": "sha256-704CZhqIrsmOxvjKK4z5omsKxfqVfNSB3JdnDCXiliY=",
       "url": "_framework\/WasmTetris.Game.dll"
     },
     {
@@ -145,7 +145,7 @@
       "url": "_framework\/dotnet.7.0.1.4vfxaiujz8.js"
     },
     {
-      "hash": "sha256-hL3jLZq\/\/mQsh\/K1pKR\/8DM2qPItHUlw2SzTqZO\/iCk=",
+      "hash": "sha256-RpLZOZSueHrDUU8OiQ3Z46E1EQhER4NQs1Yh8MkbNSE=",
       "url": "_framework\/dotnet.wasm"
     },
     {
@@ -201,6 +201,26 @@
       "url": "sounds\/drop.ogg"
     },
     {
+      "hash": "sha256-JqRmYXLR2n1gc4gyw9uj1\/U71wO90X2KgzdZSpQ73iU=",
+      "url": "sounds\/line1.ogg"
+    },
+    {
+      "hash": "sha256-SEHERZw5Na+iFH9Os+JJ0cYlQOAFunP90d+xG7nNeSA=",
+      "url": "sounds\/line2.ogg"
+    },
+    {
+      "hash": "sha256-ZoSkpAd9lCZIrD0GnFTbOZjAvoVGnBshnI58TAEEQB0=",
+      "url": "sounds\/line3.ogg"
+    },
+    {
+      "hash": "sha256-Ax2X+9YP46Ixxrell5XwC1Z4WCkOO4KKvFLXZds6Nvs=",
+      "url": "sounds\/line4.ogg"
+    },
+    {
+      "hash": "sha256-X9\/vWErZG9E8pTMccf4xRG2m0eFe2Sf4lguv\/jBzhfY=",
+      "url": "sounds\/line5.ogg"
+    },
+    {
       "hash": "sha256-bnqsR0rvRMJ6CXfxSeEnQmlEgJcgi4AJ213k7VGWFHE=",
       "url": "sounds\/move.ogg"
     },
@@ -209,5 +229,5 @@
       "url": "sounds\/rotate.ogg"
     }
   ],
-  "version": "tY9pEnFL"
+  "version": "29qGggwX"
 };
