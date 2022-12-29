@@ -70,14 +70,15 @@ public class FieldGameObject : GameObject
     {
         for (int i = 1; i < _fieldLinesX; i++)
         {
-            renderEngine.AddDrawLineToRender(_fieldPositionX + (i * _pieceWidth), _fieldPositionY, _fieldPositionX + (i * _pieceWidth), _fieldPositionY + _fieldHeight, "#3260a8", 2, .15f);
+            renderEngine.AddDrawLineToRender(_fieldPositionX + (i * _pieceWidth), _fieldPositionY, _fieldPositionX + (i * _pieceWidth), _fieldPositionY + _fieldHeight, "#3260a8", 2, .7f);
         }
 
         for (int i = 1; i < _fieldLinesY; i++)
         {
-            renderEngine.AddDrawLineToRender(_fieldPositionX, _fieldPositionY + (i * _pieceHeight), _fieldPositionX + _fieldWidth, _fieldPositionY + (i * _pieceHeight), "#3260a8", 2, .15f);
+            renderEngine.AddDrawLineToRender(_fieldPositionX, _fieldPositionY + (i * _pieceHeight), _fieldPositionX + _fieldWidth, _fieldPositionY + (i * _pieceHeight), "#3260a8", 2, .7f);
         }
 
+        renderEngine.AddDrawFillRectToRender(_fieldPositionX, _fieldPositionY, _fieldWidth, _fieldHeight, "#000", 0.9f);
         renderEngine.AddDrawStrokeRectToRender(_fieldPositionX, _fieldPositionY, _fieldWidth, _fieldHeight, "#3260a8", 2, 1, 10);
 
         for (int y = 0; y < _fieldLinesY; y++)
