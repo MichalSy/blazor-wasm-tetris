@@ -56,12 +56,6 @@ public class PlayerPieceGameObject : GameObject
 
     private void DestroyMyself(IRenderEngine renderEngine)
     {
-        if (_piecePositionY == 0)
-        {
-            _gameManager.GameOver();
-            return;
-        }
-
         renderEngine.PlaySound("drop.ogg", 1f);
         _fieldGameObject.SetFieldData(_posXIndex, (int)Math.Ceiling(_piecePositionY / (float)_pieceHeight), _currentPiece.Blocks, _color);
         renderEngine.RemoveGameObject(this);

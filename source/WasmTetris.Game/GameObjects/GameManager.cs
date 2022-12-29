@@ -76,6 +76,12 @@ public class GameManager : GameObject
 
     private void RenderEngine_OnKeyDown(object? sender, int keyCode)
     {
+        if (!_isGameRunning)
+        {
+            _isGameRunning = true;
+            return;
+        }
+
         switch (keyCode)
         {
             case 27: // esc
@@ -84,10 +90,6 @@ public class GameManager : GameObject
                 {
                     _renderEngine.RemoveGameObject(_currentPlayerPiece);
                 }
-                return;
-
-            case 32: // space
-                _isGameRunning = true;
                 return;
 
             case 17: // crtl
@@ -110,12 +112,12 @@ public class GameManager : GameObject
 
     internal void GameOver()
     {
+        _isGameRunning = false;
         if (_currentPlayerPiece is not null)
         {
             _renderEngine.RemoveGameObject(_currentPlayerPiece);
         }
         _fieldGO.ClearField();
-        //_isGameRunning = false;
     }
 
     public override void Update(IRenderEngine renderEngine, float time)
@@ -124,8 +126,14 @@ public class GameManager : GameObject
         {
             _fieldGO.Update(renderEngine, time);
 
-            if (_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed)
+            if ((_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed))
             {
+                if (!Enumerable.Range(0, _fieldLinesX).All(i => _fieldGO.IsFieldPositionEmpty(i, 0)))
+                {
+                    GameOver();
+                    return;
+                }
+
                 _currentPlayerPiece = new PlayerPieceGameObject(renderEngine, this, _fieldGO);
                 _currentPlayerPiece.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
                 renderEngine.AddGameObject(_currentPlayerPiece);
