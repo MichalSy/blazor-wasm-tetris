@@ -9,7 +9,7 @@
       "url": "_framework\/dotnet.timezones.blat"
     },
     {
-      "hash": "sha256-DM7c5m0KNeCVo8byPniWhiNbrAgGpogWiuFzyp3SoCQ=",
+      "hash": "sha256-GddrP9yyuiR\/SjOfStbz5HxXHjc9CJHzNXJIidtyEUg=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -137,7 +137,7 @@
       "url": "_framework\/System.Threading.dll"
     },
     {
-      "hash": "sha256-iXYsMc0jhfZ04k5bGrqwqdAsgCdjbP\/V0a97p7YI84E=",
+      "hash": "sha256-+CJQMoOxvx3f3rmn\/e5quGxIutgLh+3Kt0YvoTRm2nc=",
       "url": "_framework\/WasmTetris.Game.dll"
     },
     {
@@ -145,7 +145,7 @@
       "url": "_framework\/dotnet.7.0.1.4vfxaiujz8.js"
     },
     {
-      "hash": "sha256-LiJTy360axvcxbBmWeGkVNp11OC0mdOye0uoOAN6\/1Q=",
+      "hash": "sha256-cJTyMl3ZmSCrLPIetiV3NeRb+a1vwoVUa7AbKPqG37I=",
       "url": "_framework\/dotnet.wasm"
     },
     {
@@ -153,8 +153,12 @@
       "url": "WasmTetris.Game.styles.css"
     },
     {
-      "hash": "sha256-DQEdF\/NIAsGeHepnecXHh\/kA\/v28zeDT5UnC6\/taWRc=",
+      "hash": "sha256-fGWXnpojOXiEwoBYV+A7zsKtlzAJYiV\/7+YbPqkmtdc=",
       "url": "css\/app.css"
+    },
+    {
+      "hash": "sha256-V+F6q9i\/o2+c55DyamQXar0B+J3y+sgmOqUAA9qvgbU=",
+      "url": "fonts\/GochiHand-Regular.ttf"
     },
     {
       "hash": "sha256-2Rq23wB0KzINL2D1CFvJ14J+QDviHpbesoq2umY8nKI=",
@@ -181,11 +185,11 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-zt2jHqGALO7RyYQajM9b6AStaU\/6UHqF9Bal6Wu4RsM=",
+      "hash": "sha256-BgCRbSTtj+rSBVR89UxFewM4tVmrr+ngIdWTymib+ZQ=",
       "url": "js\/game.js"
     },
     {
-      "hash": "sha256-eIMaQoZQcMcqi1L6Cdr68grEApf0RzQRyWC1jGjaPiA=",
+      "hash": "sha256-zgIkzKRtPP4xX85I9Fq+lzy6NVJYtzVWnXTTzs7R5Kc=",
       "url": "js\/game.js.map"
     },
     {
@@ -229,5 +233,5 @@
       "url": "sounds\/rotate.ogg"
     }
   ],
-  "version": "hPSqeNKb"
+  "version": "J8ZZgvhe"
 };
