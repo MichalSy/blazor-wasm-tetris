@@ -68,7 +68,7 @@ public class GameManager : GameObject
     {
         if (!_isGameRunning)
         {
-            _isGameRunning = true;
+            StartGame();
             return;
         }
 
@@ -86,7 +86,7 @@ public class GameManager : GameObject
     {
         if (!_isGameRunning)
         {
-            _isGameRunning = true;
+            StartGame();
             return;
         }
 
@@ -112,6 +112,12 @@ public class GameManager : GameObject
                 _currentPlayerPiece?.MoveRight();
                 return;
         }
+    }
+
+    private void StartGame()
+    {
+        _isGameRunning = true;
+        _renderEngine.PlaySound("start.ogg", 0.4f);
     }
 
     internal void GameOver()

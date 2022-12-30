@@ -14,6 +14,7 @@ public partial class Game
         RenderEngine.AddImageAsset("images/ChestBlue.png");
         RenderEngine.AddImageAsset("images/tile.png");
 
+        RenderEngine.AddSoundAsset("start.ogg");
         RenderEngine.AddSoundAsset("drop.ogg");
         RenderEngine.AddSoundAsset("rotate.ogg");
         RenderEngine.AddSoundAsset("move.ogg");
