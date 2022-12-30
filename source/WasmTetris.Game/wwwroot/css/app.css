@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Gochi Hand';
+    src: url('../fonts/GochiHand-Regular.ttf') format("truetype");
+}
+
 * {
     overflow: hidden;
     -webkit-touch-callout: none; /* iOS Safari */
@@ -11,6 +16,7 @@
 }
 
 html {
+    font-family: 'Gochi Hand';
     touch-action: none;
     height: 100%;
     background: black;

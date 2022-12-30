@@ -131,7 +131,7 @@ public class RenderEngine : IRenderEngine
         });
     }
 
-    public void AddDrawTextToRender(int posX, int posY, string text, string htmlColor, string textAlign = "left", float alpha = 1, float shadowBlur = 0)
+    public void AddDrawTextToRender(int posX, int posY, string text, string htmlColor, string textAlign = "left", int fontSize = 15, float alpha = 1, float shadowBlur = 0)
     {
         _nextRenderObjectStack.Add(new RenderObject<object>
         {
@@ -144,6 +144,7 @@ public class RenderEngine : IRenderEngine
             {
                 Color = htmlColor,
                 TextAlign = textAlign,
+                FontSize = fontSize,
                 Text = text,
                 Alpha = alpha,
                 ShadowBlur = shadowBlur

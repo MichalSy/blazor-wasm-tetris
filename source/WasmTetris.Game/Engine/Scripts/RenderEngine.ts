@@ -125,7 +125,7 @@
 
             this.renderContext.fillStyle = data.color ?? "#000";
             this.renderContext.shadowColor = data.color ?? "#000";
-            this.renderContext.font = "normal 16pt Arial";
+            this.renderContext.font = "normal " + (data.fontSize ?? 22) + "pt 'Gochi Hand'";
             this.renderContext.textAlign = data.textAlign ?? "left";
             this.renderContext.textBaseline = data.textBaseLine ?? "middle";
             this.renderContext.globalAlpha = data.alpha ?? 1;
@@ -182,10 +182,10 @@
         }
 
         showFPS() {
-            this.renderContext.fillStyle = "White";
-            this.renderContext.font = "normal 16pt Arial";
+            this.renderContext.fillStyle = "Black";
+            this.renderContext.font = "normal 8pt Arial";
 
-            this.renderContext.fillText(this.fpsCount + " fps", 10, 26);
+            this.renderContext.fillText(this.fpsCount + " fps", 0, 10);
 
         }
 

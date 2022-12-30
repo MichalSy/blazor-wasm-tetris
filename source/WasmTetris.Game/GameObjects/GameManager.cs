@@ -8,11 +8,11 @@ public class GameManager : GameObject
 {
     private readonly IRenderEngine _renderEngine;
 
-    private static readonly int _fieldHorzMargin = 60;
+    private static readonly int _fieldHorzMargin = 40;
     private static readonly int _maxPieceWidth = 32;
 
     private int _pieceWidth = 16;
-    private readonly int _fieldTopMargin = 120;
+    private readonly int _fieldTopMargin = 60;
 
     private readonly int _fieldLinesX = 11;
     private readonly int _fieldLinesY = 25;
@@ -60,12 +60,18 @@ public class GameManager : GameObject
 
         _fieldGO.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _fieldLinesY, _pieceWidth, _pieceWidth);
 
-        _startGameUI.SetCenterPoint(_fieldHorzMargin + (_fieldWidth / 2), _fieldTopMargin + (_fieldHeight / 2));
+        _startGameUI.SetCenterPoint(_fieldHorzMargin + (_fieldWidth / 2), _fieldTopMargin + (_fieldHeight / 2), _fieldWidth);
         //Console.WriteLine($"Game: {_gameWidth}x{_gameHeight}, Field: {_fieldWidth}x{_fieldHeight},  Piece: {_pieceWidth}");
     }
 
     private void RenderEngine_OnTouchStarted(object? sender, Point e)
     {
+        if (!_isGameRunning)
+        {
+            _isGameRunning = true;
+            return;
+        }
+
         if (e.X < _gameWidth / 2)
         {
             _currentPlayerPiece?.MoveLeft();
