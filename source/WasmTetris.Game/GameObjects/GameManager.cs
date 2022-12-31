@@ -24,6 +24,7 @@ public class GameManager : GameObject
 
     private readonly FieldGameObject _fieldGO = new();
     private readonly StartGameUIGameObject _startGameUI = new();
+    private readonly ScoreInfoGameObject _scoreInfoUI = new();
     private PlayerPieceGameObject? _currentPlayerPiece;
 
     private bool _isGameRunning = false;
@@ -61,6 +62,7 @@ public class GameManager : GameObject
         _fieldGO.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _fieldLinesY, _pieceWidth, _pieceWidth);
 
         _startGameUI.SetCenterPoint(_fieldHorzMargin + (_fieldWidth / 2), _fieldTopMargin + (_fieldHeight / 2), _fieldWidth);
+        _scoreInfoUI.SetFieldPosition(_fieldHorzMargin, _fieldWidth);
         //Console.WriteLine($"Game: {_gameWidth}x{_gameHeight}, Field: {_fieldWidth}x{_fieldHeight},  Piece: {_pieceWidth}");
     }
 
@@ -117,7 +119,8 @@ public class GameManager : GameObject
     private void StartGame()
     {
         _isGameRunning = true;
-        _renderEngine.PlaySound("start.ogg", 0.4f);
+        _scoreInfoUI.SetStartTime();
+        _renderEngine.PlaySound("start.ogg", 0.2f);
     }
 
     internal void GameOver()
@@ -128,6 +131,7 @@ public class GameManager : GameObject
             _renderEngine.RemoveGameObject(_currentPlayerPiece);
         }
         _fieldGO.ClearField();
+        _scoreInfoUI.Reset();
     }
 
     public override void Update(IRenderEngine renderEngine, float time)
@@ -135,7 +139,7 @@ public class GameManager : GameObject
         if (_isGameRunning)
         {
             _fieldGO.Update(renderEngine, time);
-
+            
             if ((_currentPlayerPiece == null || _currentPlayerPiece.IsDestroyed))
             {
                 if (!Enumerable.Range(0, _fieldLinesX).All(i => _fieldGO.IsFieldPositionEmpty(i, 0)))
@@ -148,15 +152,16 @@ public class GameManager : GameObject
                 _currentPlayerPiece.SetFieldSetup(_fieldHorzMargin, _fieldTopMargin, _fieldLinesX, _pieceWidth, _pieceWidth);
                 renderEngine.AddGameObject(_currentPlayerPiece);
             }
+
+            _scoreInfoUI.Update(renderEngine, time);
         } 
-
-
-
     }
 
     public override void Render(IRenderEngine renderEngine)
     {
         _fieldGO.Render(renderEngine);
+        _scoreInfoUI.Render(renderEngine);
+
         if (!_isGameRunning)
         {
             _startGameUI.Render(renderEngine);
