@@ -29,11 +29,15 @@ public class PlayerPieceGameObject : GameObject
 
     private bool _showCollisionLines = false;
 
-    private readonly float _movingSpeed = 10;
+    private float _movingSpeed = 10;
     private float _movingMultiplyer = 1;
 
     private bool _needMoveRight;
     private bool _needMoveLeft;
+    private bool _isTurboActive;
+
+    private DateTime? _lastScoreTime;
+    private int _scorePerMove = 1;
 
     public PlayerPieceGameObject(IRenderEngine renderEngine, GameManager gameManager, FieldGameObject fieldGameObject)
     {
@@ -89,6 +93,11 @@ public class PlayerPieceGameObject : GameObject
         _needMoveRight = true;
     }
 
+    public void SetTurbo(bool newValue)
+    {
+        _isTurboActive = newValue;
+    }
+
     public override void Update(IRenderEngine renderEngine, float time)
     {
         var isDebugMode = _showCollisionLines = renderEngine.IsKeyDown(32);
@@ -113,12 +122,14 @@ public class PlayerPieceGameObject : GameObject
 
         var newPosY = _piecePositionY;
 
+        _movingSpeed = 10 + (_gameManager.CurrentGameLines * 0.1f);
+
         if (!isDebugMode) // space
         {
             newPosY = _piecePositionY + (int)Math.Ceiling(_movingSpeed * _movingMultiplyer * time);
         }
 
-        if (renderEngine.IsKeyDown(40)) // arrow down
+        if (_isTurboActive) 
         {
             if (isDebugMode) // space
             {
@@ -153,6 +164,7 @@ public class PlayerPieceGameObject : GameObject
         }
         _needMoveLeft = false;
 
+        _lastScoreTime ??= DateTime.UtcNow;
         if (newPosY != _piecePositionY)
         {
             // check falling position
@@ -160,6 +172,11 @@ public class PlayerPieceGameObject : GameObject
             {
                 DestroyMyself(renderEngine);
                 return;
+            }
+            if (_lastScoreTime.Value.AddMilliseconds(100) < DateTime.UtcNow)
+            {
+                _gameManager.AddScore(_isTurboActive ? _scorePerMove * 8 : _scorePerMove);
+                _lastScoreTime = DateTime.UtcNow;
             }
 
             _piecePositionY = newPosY;

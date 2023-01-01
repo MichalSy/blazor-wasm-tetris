@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using WasmTetris.Game.BaseGameObject;
 using WasmTetris.Game.Engine;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace WasmTetris.Game.GameObjects;
 
@@ -22,21 +23,33 @@ public class GameManager : GameObject
     private int _gameWidth = 300;
     private int _gameHeight = 600;
 
-    private readonly FieldGameObject _fieldGO = new();
+    private readonly FieldGameObject _fieldGO;
     private readonly StartGameUIGameObject _startGameUI = new();
     private readonly ScoreInfoGameObject _scoreInfoUI = new();
     private PlayerPieceGameObject? _currentPlayerPiece;
 
     private bool _isGameRunning = false;
 
+    private int _currentGameLines = 0;
+    public int CurrentGameLines => _currentGameLines;
+
+    private DateTime? _currentGameStart;
+    private int _currentGameScore = 0;
+    private TimeSpan _currentGameTime = TimeSpan.Zero;
+
+    
 
     public GameManager(IRenderEngine renderEngine)
     {
+        _fieldGO = new(this);
         _renderEngine = renderEngine ?? throw new ArgumentNullException(nameof(renderEngine));
         _renderEngine.OnWindowSizeChanged += RenderEngine_OnWindowSizeChanged;
         _renderEngine.OnTouchStarted += RenderEngine_OnTouchStarted;
         _renderEngine.OnKeyDown += RenderEngine_OnKeyDown;
+        _renderEngine.OnKeyUp += RenderEngine_OnKeyUp;
     }
+
+    
 
 
 
@@ -113,13 +126,32 @@ public class GameManager : GameObject
             case 39: // Arrow Right
                 _currentPlayerPiece?.MoveRight();
                 return;
+
+            case 40: // Arrow Down
+                _currentPlayerPiece?.SetTurbo(true);
+                return;
+        }
+    }
+
+    private void RenderEngine_OnKeyUp(object? sender, int keyCode)
+    {
+        if (!_isGameRunning)
+        {
+            return;
+        }
+
+        switch (keyCode)
+        {
+            case 40: // Arrow Down
+                _currentPlayerPiece?.SetTurbo(false);
+                return;
         }
     }
 
     private void StartGame()
     {
         _isGameRunning = true;
-        _scoreInfoUI.SetStartTime();
+        _currentGameStart = DateTime.UtcNow;
         _renderEngine.PlaySound("start.ogg", 0.2f);
     }
 
@@ -131,7 +163,19 @@ public class GameManager : GameObject
             _renderEngine.RemoveGameObject(_currentPlayerPiece);
         }
         _fieldGO.ClearField();
+        _currentGameStart = null;
+        _currentGameLines = 0;
+        _currentGameScore = 0;
         _scoreInfoUI.Reset();
+    }
+
+    public void AddScore(int addPoints, int addLines = 0)
+    {
+        _currentGameScore += addPoints;
+        if (addLines > 0)
+        {
+            _currentGameLines += addLines;
+        }
     }
 
     public override void Update(IRenderEngine renderEngine, float time)
@@ -153,7 +197,12 @@ public class GameManager : GameObject
                 renderEngine.AddGameObject(_currentPlayerPiece);
             }
 
-            _scoreInfoUI.Update(renderEngine, time);
+            if (_currentGameStart is not null)
+            {
+                _currentGameTime = DateTime.UtcNow - _currentGameStart.Value;
+            }
+
+            _scoreInfoUI.SetValues(_currentGameTime, _currentGameLines, _currentGameScore);
         } 
     }
 

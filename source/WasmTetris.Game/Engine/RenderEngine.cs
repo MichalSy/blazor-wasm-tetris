@@ -17,6 +17,7 @@ public class RenderEngine : IRenderEngine
     public event EventHandler<Size>? OnWindowSizeChanged;
     public event EventHandler<Point>? OnTouchStarted;
     public event EventHandler<int>? OnKeyDown;
+    public event EventHandler<int>? OnKeyUp;
 
     private bool[] _keyDownCache = new bool[200];
 
@@ -208,6 +209,7 @@ public class RenderEngine : IRenderEngine
 
             case "keyup":
                 _keyDownCache[keyCode] = false;
+                OnKeyUp?.Invoke(this, keyCode);
                 return;
         }
     }
@@ -222,6 +224,6 @@ public class RenderEngine : IRenderEngine
                 return;
         }
 
-        Console.WriteLine($"E: {eventType}, posX: {posX}, posY: {posY}");
+        //Console.WriteLine($"E: {eventType}, posX: {posX}, posY: {posY}");
     }
 }

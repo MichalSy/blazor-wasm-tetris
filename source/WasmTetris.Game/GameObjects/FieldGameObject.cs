@@ -16,6 +16,12 @@ public class FieldGameObject : GameObject
     private int _pieceHeight;
 
     private List<PieceMapData[]> _fieldMap = new ();
+    private readonly GameManager _gameManager;
+
+    public FieldGameObject(GameManager gameManager)
+    {
+        _gameManager = gameManager;
+    }
 
     internal void SetFieldSetup(int fieldPositionX, int fieldPositionY, int fieldLinesX, int fieldLinesY, int pieceWidth, int pieceHeight)
     {
@@ -76,6 +82,8 @@ public class FieldGameObject : GameObject
         if (fullLines.Any())
         {
             var removeCount = _fieldMap.RemoveAll(y => y.All(x => x is not null));
+            _gameManager.AddScore(removeCount * 1000 * (_gameManager.CurrentGameLines + 1), removeCount);
+            Console.WriteLine($"Lines: {_gameManager.CurrentGameLines}");
             switch (removeCount)
             {
                 case 1:

@@ -1,6 +1,6 @@
 ﻿namespace WasmTetris {
     export class FpsCalculator {
-        private sampleSize = 60;
+        private sampleSize = 10;
         private sampleData = Array<number>();
         private index = 0;
         private lastTick = 0;

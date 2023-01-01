@@ -18,7 +18,6 @@ public class ScoreInfoGameObject : GameObject
     private int _scoreBoxHeight = 100;
 
 
-    private DateTime? _startTime;
     private TimeSpan _displayTime = TimeSpan.Zero;
     private int _displayScore = 0;
 
@@ -40,20 +39,12 @@ public class ScoreInfoGameObject : GameObject
     {
         _displayTime = TimeSpan.Zero;
         _displayScore = 0;
-        _startTime = null;
     }
 
-    public void SetStartTime()
+    public void SetValues(TimeSpan time, int lines, int score)
     {
-        _startTime = DateTime.UtcNow;
-    }
-
-    public override void Update(IRenderEngine renderEngine, float time)
-    {
-        if (_startTime is not null)
-        {
-            _displayTime = DateTime.UtcNow - _startTime.Value;
-        }
+        _displayTime = time;
+        _displayScore = score;
     }
 
     public override void Render(IRenderEngine renderEngine)
