@@ -150,6 +150,11 @@ public class GameManager : GameObject
 
     private void StartGame()
     {
+        _currentGameStart = null;
+        _currentGameLines = 0;
+        _currentGameScore = 0;
+        _scoreInfoUI.Reset();
+
         _isGameRunning = true;
         _currentGameStart = DateTime.UtcNow;
         _renderEngine.PlaySound("start.ogg", 0.2f);
@@ -163,10 +168,7 @@ public class GameManager : GameObject
             _renderEngine.RemoveGameObject(_currentPlayerPiece);
         }
         _fieldGO.ClearField();
-        _currentGameStart = null;
-        _currentGameLines = 0;
-        _currentGameScore = 0;
-        _scoreInfoUI.Reset();
+        
     }
 
     public void AddScore(int addPoints, int addLines = 0)
