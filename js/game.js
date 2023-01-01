@@ -1,7 +1,7 @@
 var WasmTetris;
 (function (WasmTetris) {
     class FpsCalculator {
-        sampleSize = 60;
+        sampleSize = 10;
         sampleData = Array();
         index = 0;
         lastTick = 0;
